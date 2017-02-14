@@ -10,7 +10,8 @@
 	
 	<!-- Version information will be stored here -->
 	<properties>
-		<javaee.version>7.0</javaee.version>					
+		<javaee.version>7.0</javaee.version>
+		<spring.version>4.3.6.RELEASE</spring.version>					
 	</properties>	
 	
 	<dependencies>
@@ -29,6 +30,16 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- SPRING -->
+
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-webmvc</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+		
+		
 	</dependencies>
 	<build>
 		<!-- Updated for the latest version of JAVA -->
