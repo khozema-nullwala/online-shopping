@@ -13,5 +13,5 @@ public class PageController {
 		mv.addObject("greeting","Welcome to Spring Web MVC");
 		return mv;				
 	}
-			
+	
 }
