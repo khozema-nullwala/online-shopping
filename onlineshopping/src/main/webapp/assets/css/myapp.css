@@ -4,8 +4,13 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 
+html {
+	height:100%;
+}
+
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    height:100%;
 }
 
 .slide-image {
@@ -50,5 +55,32 @@ body {
 }
 
 footer {
-    margin: 50px 0;
+    margin: 0;
 }
+
+
+/*
+	custom styling
+*/
+
+.wrapper {	
+	min-height:100%;
+	position: relative;
+}
+
+
+.content {
+	padding-bottom: 60px; /*height of the footer*/	
+}
+
+
+.footer {
+	
+	position:absolute;
+	bottom:15px;
+	height: 60px;
+	
+}
+
+
+
