@@ -13,6 +13,7 @@
     ">
 
 	<context:component-scan base-package="net.kzn.onlineshopping.controller"/>
+	<context:component-scan base-package="net.kzn.shoppingbackend.daoimpl"/>
 
 
 	<bean id="viewResolver"
