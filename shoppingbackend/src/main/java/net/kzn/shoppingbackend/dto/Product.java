@@ -28,12 +28,16 @@ public class Product {
 	private int categoryId;
 	@Column(name = "supplier_id")
 	private int supplierId;
+	private int purchases;
+	private int views;
 	
-	
-	// Constructor
+	// default constructor
 	public Product() {
+		
 		this.code = "PRD" + UUID.randomUUID().toString().substring(26).toUpperCase();
+		
 	}
+	
 	
 	// setters and getters	
 	public int getId() {
@@ -97,12 +101,29 @@ public class Product {
 		this.supplierId = supplierId;
 	}
 
+	public int getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(int purchases) {
+		this.purchases = purchases;
+	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
+	}
+
+	
 	// toString for debugging
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", code=" + code + ", name=" + name + ", brand=" + brand + ", description="
 				+ description + ", unitPrice=" + unitPrice + ", quantity=" + quantity + ", active=" + active
-				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + "]";
+				+ ", categoryId=" + categoryId + ", supplierId=" + supplierId + ", purchases=" + purchases + ", views="
+				+ views + "]";
 	}
-		
 }
