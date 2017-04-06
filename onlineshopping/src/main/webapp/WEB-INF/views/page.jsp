@@ -80,16 +80,19 @@
 			<!-- Load only when user clicks contact -->
 			<c:if test="${userClickAllProducts == true or userClickCategoryProducts == true }">
 				<%@include file="listProducts.jsp"%>
-			</c:if>			
+			</c:if>	
 			
+			
+			<!-- Load only when user clicks show product -->
+			<c:if test="${userClickShowProduct == true}">
+				<%@include file="singleProduct.jsp"%>
+			</c:if>								
 
 		</div>
 
 
 		<!-- Footer comes here -->
 		<%@include file="./shared/footer.jsp"%>
-
-
 
 		<!-- jQuery -->
 		<script src="${js}/jquery.js"></script>
