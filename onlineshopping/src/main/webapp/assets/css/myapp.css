@@ -154,3 +154,8 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
+/* overridden css */
+.help-block {
+	color: #ff0000;
+}
