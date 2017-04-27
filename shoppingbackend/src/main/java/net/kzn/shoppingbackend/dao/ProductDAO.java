@@ -13,7 +13,7 @@ public interface ProductDAO {
 	boolean delete(Product product);
 	
 	// business methods
-	List<Product> listActiveProducts();
+	List<Product> listActiveProducts();	
 	List<Product> listActiveProductsByCategory(int categoryId);
 	List<Product> getLatestActiveProducts(int count);
 	

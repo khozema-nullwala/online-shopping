@@ -8,8 +8,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+@Component
 @Entity
 public class Product {
 
@@ -25,12 +27,11 @@ public class Product {
 	@Column(name = "unit_price")
 	private double unitPrice;
 	private int quantity;
-	@Column(name = "is_active")
-	@JsonIgnore
+	@Column(name = "is_active")	
 	private boolean active;
 	@Column(name = "category_id")
 	@JsonIgnore
-	private int categoryId;
+	private int S;
 	@Column(name = "supplier_id")
 	@JsonIgnore
 	private int supplierId;

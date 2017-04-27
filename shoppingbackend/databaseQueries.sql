@@ -39,6 +39,11 @@ INSERT INTO user_detail
 (first_name, last_name, role, enabled, password, email, contact_number) 
 VALUES ('Ravichandra', 'Ashwin', 'SUPPLIER', true, '12345', 'ra@gmail.com', '7777777777');
 
+INSERT INTO user_detail 
+(id, first_name, last_name, role, enabled, password, email, contact_number) 
+VALUES (0, 'Sachin', 'Tendulkar', 'ADMIN', true, '12345', 'st@gmail.com', '1111111111');
+
+
 
 CREATE TABLE product (
 	id IDENTITY,
