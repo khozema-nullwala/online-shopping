@@ -38,9 +38,6 @@ public class ManagementController {
 	@Autowired
 	private CategoryDAO categoryDAO;		
 
-	@Autowired 
-	private HttpServletRequest request;
-	
 	@RequestMapping("/product")
 	public ModelAndView manageProduct(@RequestParam(name="success",required=false)String success) {		
 
@@ -89,17 +86,18 @@ public class ManagementController {
 	
 	
 	@RequestMapping(value = "/product", method=RequestMethod.POST)
-	public String managePostProduct(@Valid @ModelAttribute("product") Product mProduct, BindingResult results, Model model) {
-
-	
+	public String managePostProduct(@Valid @ModelAttribute("product") Product mProduct, 
+			BindingResult results, Model model, HttpServletRequest request) {
+		
+		// mandatory file upload check
 		if(mProduct.getId() == 0) {
 			new ProductValidator().validate(mProduct, results);
 		}
 		else {
+			// edit check only when the file has been selected
 			if(!mProduct.getFile().getOriginalFilename().equals("")) {
 				new ProductValidator().validate(mProduct, results);
-			}
-			
+			}			
 		}
 		
 		if(results.hasErrors()) {
@@ -117,11 +115,8 @@ public class ManagementController {
 		}
 	
 		 //upload the file
-		 if(mProduct.getId() == 0 || mProduct.getFile() != null ){
-			try {
-				FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode()); 
-			}
-			catch(Exception ex) {}			
+		 if(!mProduct.getFile().getOriginalFilename().equals("") ){
+			FileUtil.uploadFile(request, mProduct.getFile(), mProduct.getCode()); 
 		 }
 		
 		return "redirect:/manage/product?success=product";

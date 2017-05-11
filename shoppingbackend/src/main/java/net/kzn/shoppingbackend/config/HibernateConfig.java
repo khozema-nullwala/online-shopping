@@ -68,6 +68,8 @@ public class HibernateConfig {
 		properties.put("hibernate.show_sql", "true");
 		properties.put("hibernate.format_sql", "true");
 		
+		properties.put("hibernate.hbm2ddl.auto", "create");
+		
 		
 		return properties;
 	}

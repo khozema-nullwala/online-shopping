@@ -204,6 +204,4 @@
 	
 	</div>
 
-	<a href="${contextRoot}/home" data-title="Are you sure you want to delete it?" data-toggle="confirm">Delete</a>
-
 </div>

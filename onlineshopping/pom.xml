@@ -66,7 +66,13 @@
 			<version>1.2</version>
 		</dependency>
 
-
+		<!-- Spring Webflow -->
+	    <dependency>
+	        <groupId>org.springframework.webflow</groupId>
+	        <artifactId>spring-webflow</artifactId>
+	        <version>2.4.4.RELEASE</version>
+	    </dependency>
+	    
 	</dependencies>
 	<build>
 		<!-- Updated for the latest version of JAVA -->

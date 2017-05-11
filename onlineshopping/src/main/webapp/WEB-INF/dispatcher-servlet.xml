@@ -1,6 +1,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:wf="http://www.springframework.org/schema/webflow-config"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
     http://www.springframework.org/schema/beans
@@ -9,7 +10,8 @@
     http://www.springframework.org/schema/context/spring-context.xsd    
     http://www.springframework.org/schema/mvc
     http://www.springframework.org/schema/mvc/spring-mvc.xsd    
-    
+    http://www.springframework.org/schema/webflow-config
+    http://www.springframework.org/schema/webflow-config/spring-webflow-config.xsd        
     ">
 
 	<context:component-scan base-package="net.kzn.onlineshopping"/>
@@ -33,6 +35,16 @@
 	
 	<mvc:resources location="/assets/" mapping="/resources/**" />
 	
+	
+	
+	<!-- Webflow configuration -->
+	
+	<!-- It is the entry point in the flow -->
+	<wf:flow-executor id="flowExecutor"  />
+	
+	<wf:flow-registry id="flowRegistry" base-path="/WEB-INF/flows">
+		<wf:flow-location-pattern value="/**/*-flow.xml"/>
+	</wf:flow-registry>
 	
 	
 
