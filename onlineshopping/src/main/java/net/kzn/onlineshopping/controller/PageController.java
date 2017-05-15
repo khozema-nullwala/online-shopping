@@ -124,8 +124,15 @@ public class PageController {
 	}
 	
 	
-	
-	
+	@RequestMapping(value="/membership")
+	public ModelAndView register() {
+		ModelAndView mv= new ModelAndView("page");
+		
+		logger.info("Page Controller membership called!");
+		
+		return mv;
+	}
+		
 	
 	
 	

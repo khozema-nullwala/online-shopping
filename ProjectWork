@@ -1430,10 +1430,10 @@ TO BE CONTINUED - Part 06 - 02 - Understanding Hibernate OneToOne Uni-directiona
 
 2. Create separate test class to write test cases for User.
 
-3. Add the hbm2ddl.auto property in the HibernateConfig file to understand the mappings.
+3. Add the hbm2ddl.auto property in the HibernateConfig file to understand the mappings and let the hibernate create the tables for us.
 
+update - create if not there or update if its already there.
 create - drop the exisiting tables and re-create it.
-update - create if not there or update if its already there. 
 
 4. Add the OneToOne mapping in the Cart class on the user field.
 
@@ -1462,7 +1462,7 @@ TO BE CONTINUED - Part 06 - 03 - Understanding Hibernate OneToOne Bi-directional
 
 NOTE: if we don't define who is the owner of the relationship we get the fields created in both the tables. To avoid it we can use the mappedBy attribute to define the relationship owner.
 
-2. Remove the addCart method from the DAO and DAOImpl which is not required as we will creating the cart for the user if the user is a CUSTOMER.
+2. Remove the addCart method from the DAO and DAOImpl which is not required as we will creating the cart for the user if the user is a USER.
 
 
 TO BE CONTINUED - Part 06 - 04 - Completing the Address Part
@@ -1491,7 +1491,7 @@ TO BE CONTINUED - Part 06 - 04 - Completing the Address Part
 
 1. We will add the ManyToOne annotation on the Address class first to understand when it is a good idea to use mapping and when to avoid using it.
 
-2. Complete the methods of the UserDAOImpl based on the mapping we just added. 
+2. Complete the methods of the UserDAOImpl based on our choice. 
 
 3. Write the test cases for Address to check if the list of addresses is fetched or not.
 
@@ -1529,17 +1529,17 @@ TO BE CONTINUED - Part 06 - 05 - Understanding Spring Webflow
 
 
 
-
-
-
-
-
-
-
-
-
-
 TO BE CONTINUED - Part 06 - 06 - Configuring Spring Webflow
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1571,15 +1571,120 @@ TO BE CONTINUED - Part 06 - 06 - Configuring Spring Webflow
 
 	<wf:flow-executor id="flowExecutor" />
 
+NOTE: 
+We have to also specify the flow-registry attribute and specify the id of flow-registry element if not provided it would automatically look for element with id of flowRegistry
+
 4. Add the flow-registry for finding the flows of the application.
 
+   <wf:flow-registry id=“flowRegistry” base-path=“/WEB-INF/views/flows”> 
+   	<wf:flow-location-pattern value=“/**/*-flow.xml” /> 
+   </wf:flow-registry> 
+
+NOTE: 
+
+All flows are given IDs (which are ultimately used to reference the flow). Using the URL pattern given here, the flow ID will be the directory path containing the flow definition file relative to the base path (the part represented with the double-asterisk). 
+
+Path to the flow file 										Flow Id
+------------------------------------------------------------------------
+/WEB-INF/views/flows/membership/membership-flow.xml 	    membership				
+/WEB-INF/views/flows/membership/register-flow.xml 			membership	
+/WEB-INF/views/flows/cart/checkout/checkout-flow.xml		cart/checkout  
+
+In case if you want to use the base path you can use following for indicating the flow file and its id.
+
+	<wf:flow-registry id="flowRegistry"> 
+		<wf:flow-location path="/WEB-INF/views/flows/membership.xml" /> 
+	</wf:flow-registry>
+
+NOTE: the rules change for flow id when we are not using base-path for locating the flow file it is the file name itself i.e. "membership"
+
+Or you can be even more explicit about the flow ID by specifying an id attribute of the <wf:flow-location> element:
+
+	<wf:flow-registry id="flowRegistry"> 
+	 <wf:flow-location id="register" path="/WEB-INF/views/flows/membership.xml" /> 
+	</wf:flow-registry>
+
+5. To customize the flow-registry and provide additional configuration we are going to use the flow-builder-services but first we would be adding
+		flow-builder-services="flowBuilderServices" in the registry.
+	
+	<wf:flow-builder-services id="flowBuilderServices"
+    	view-factory-creator="viewFactoryCreatory"
+	/>
+ 
+6. Spring Web Flow provides a Spring MVC handler adapter called FlowHandlerAdapter. This handler adapter is the bridge between DispatcherServlet and the flow executor, handling requests and manipulating the flow based on those requests. 
+	
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+		<property name="flowExecutor" ref="flowExecutor" />
+	</bean>	
+
+7. DispatcherServlet knows how to dispatch requests by consulting with one or more handler mappings. For web flows, FlowHandlerMapping helps DispatcherServlet know to send flow requests to the FlowHandlerAdapter:
+
+	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+		<property name="flowRegistry" ref="flowRegistry" />
+		<property name="order" value="-1" />
+	</bean>
+
+Here for any incoming request, the Spring Webflow registry will be checked to see whether any guided flows are configured. That is why we make the order for Spring Webflow ‘-1’.  The flow registry contains all the flows available in the application. If a guided flow is found then the flow executor is initiated.
+
+
+8. For resolving views for web flow we will add one more bean which will point to the view resolver  - 
+   	<bean id="viewFactoryCreator"
+   class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
+         <property name="viewResolvers">
+             <list>
+                 <ref bean="viewResolver" />
+             </list>
+         </property>
+ 	</bean>	
 
 
 
+TO BE CONTINUED - Part 06 - 07 - Creating membership flow file. 
 
 
 
-TO BE CONTINUED - Part 06 - 07 - Preparing the views based on flow
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 06 - Working with Registration Module using Spring Web flow
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 07 - Creating membership flow file
+|--------------------------------------------------------------------
+
+1. We will add the directory and flow file to it and then use the inbuild flow id to reference it in the page.jsp page.
+
+Path to the flow file 										Flow Id
+------------------------------------------------------------------------
+/WEB-INF/views/flows/register/signup-flow.xml 				register
+
+2. Add a menu to the navbar jsp for registering a new user. We are going to use the flow id in the href along with our contextRoot to start the flow. 
+
+3. To render the view based on the user action we will create flow file. It requires the namespace to use different flow elements. For getting the namespace we can refer webflow documentation.
+
+http://docs.spring.io/spring-webflow/docs/2.4.4.RELEASE/reference/html/
+
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+</flow>
+
+4. We will add different elements related to the flow.
+
+5. Let us create a signup-personal.jsp page and add it to the view-state.
+
+6. Test everything!
+
+
+TO BE CONTINUED - Part 06 - 08 - Completing the views in webflow with model
 
 
 
@@ -1595,37 +1700,23 @@ TO BE CONTINUED - Part 06 - 07 - Preparing the views based on flow
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 05 - Preparing the views based on flow
+| 08 - Adding all the views for the flow
 |--------------------------------------------------------------------
 
+1. Complete the singup-personal.jsp page by adding the spring form element as it requires modelAttribute we are going to use the var elemenent of flow that will create a flow instance variable.
 
+2. Similarly we are going to add the remaining spring form element for all the pages and we will have a page where all the confirmation details will be there.
 
-
-TO BE CONTINUED - Part 06 - 06 - Configuring Membership flow file
-
-
-
-
-
-
-|-----------------------------------------------------------------
-| Complete Project Step By Step with 
-| Spring, Hibernate, Maven, Angular JS and Bootstrap
-| - Khozema Nullwala
-|-----------------------------------------------------------------
-
-|-----------------------------------------------------------------
-| Part 06 - Working with Registration Module using Spring Web flow
-|-----------------------------------------------------------------
-
-|--------------------------------------------------------------------
-| 06 - Configuring Membership flow file
-|--------------------------------------------------------------------
+3. The user will finally submit the details and it would be forwarded to a thanks page.
 
 
 
 
-TO BE CONTINUED - Part 06 - 07 - Writing a handler for flow
+
+
+
+
+TO BE CONTINUED - Part 06 - 09 - Writing a handler for handling action in flow
 
 
 
@@ -1673,6 +1764,11 @@ TO BE CONTINUED - Part 06 - 08 - Validating fields in the flow
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
  
 2. The validator attribute will be added to the flow-builder-services  
+
+3. Add the hibernate validator annotation and write custom validation for checking uniqueness of the email id.
+
+4. Make sure to have the spring form errors element targeting the proper field of the class.
+
 
 TO BE CONTINUED - Part 07 - Authentication & Authorization Using Spring Security
 

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+
+	<var name="user" class="net.kzn.shoppingbackend.dto.User"/>
+	<var name="billing" class="net.kzn.shoppingbackend.dto.Address"/>
+
+	<on-start>
+		<evaluate expression="registerHandler.init()" result="flowScope.registerModel"/>
+	</on-start>
+
+	<view-state id="start" view="flows/membership/signup-personal" model="user">
+		<transition on="billing" to="validate" />
+		<on-exit>
+			<evaluate expression="registerHandler.addUser(flowScope.registerModel, user)" />			
+		</on-exit>
+	</view-state>
+	
+	<action-state id="validate">
+		<evaluate expression="registerHandler.validateUser(user,messageContext)" />
+		<transition on="success" to="billing"/>
+		<transition on="failure" to="start"/>
+	</action-state>
+	
+	<view-state id="billing" view="flows/membership/signup-billing" model="billing">		
+		<transition on="confirm" to="confirm" />
+		<transition on="start" to="start" />	
+		<on-exit>
+			<evaluate expression="registerHandler.addBilling(flowScope.registerModel, billing)" />
+		</on-exit>
+	</view-state>
+	
+	<view-state id="confirm" view="flows/membership/signup-confirm" model="flowScope.registerModel">		
+		<transition on="submit" to="submit" />
+		<transition on="billing" to="billing" />
+		<transition on="start" to="start" />	
+	</view-state>
+	
+	<action-state id="submit">
+		<evaluate expression="registerHandler.saveAll(flowScope.registerModel)" />
+		<transition on="success" to="success"/>
+	</action-state>
+	
+	
+	<end-state  id="success" view="flows/membership/signup-success" />
+							
+	<end-state id="home" view="externalRedirect:contextRelative:/" />
+
+	
+
+	<global-transitions>
+		<transition on="home" to="home" validate="false" />
+	</global-transitions>
+	
+</flow>

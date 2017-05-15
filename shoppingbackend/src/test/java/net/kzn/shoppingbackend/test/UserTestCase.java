@@ -31,7 +31,7 @@ public class UserTestCase {
 		userDAO = (UserDAO) context.getBean("userDAO");
 	}
 	
-
+/*
 	@Test
 	public void testAddUser() {
 		
@@ -83,7 +83,7 @@ public class UserTestCase {
 		
 	}
 	
-	
+	*/
 
 	// working for uni-directional
 /*
