@@ -39,7 +39,6 @@
 	
 	<!-- Webflow configuration -->
 	
-	<!-- It is the entry point in the flow -->
 	<wf:flow-executor id="flowExecutor"  />
 	
 	<wf:flow-registry id="flowRegistry" base-path="/WEB-INF/views/flows" flow-builder-services="flowBuilderServices">

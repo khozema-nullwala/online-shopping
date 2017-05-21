@@ -9,14 +9,14 @@ import net.kzn.shoppingbackend.dto.User;
 public interface UserDAO {
 
 	// user related operation
-	User get(int id);
 	User getByEmail(String email);
 	boolean add(User user);
 	
 	// adding and updating a new address
 	boolean addAddress(Address address);
 	boolean updateAddress(Address address);
-	List<Address> listAddresses(User user, boolean isBilling);
+	Address getBillingAddress(User user);
+	List<Address> listShippingAddresses(User user);
 	
 	// updating the cart
 	boolean updateCart(Cart cart);

@@ -41,7 +41,7 @@ public class User implements Serializable{
 	private String role;
 	@NotBlank(message = "Please enter password!")
 	private String password;
-	
+	private boolean enabled = true;
 	@Transient
 	private String confirmPassword;
 
@@ -51,7 +51,7 @@ public class User implements Serializable{
 	public void setConfirmPassword(String confirmPassword) {
 		this.confirmPassword = confirmPassword;
 	}
-	private boolean enabled = true;
+	
 	public int getId() {
 		return id;
 	}
@@ -117,9 +117,5 @@ public class User implements Serializable{
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	
-	
-	
-	
 	
 }

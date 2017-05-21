@@ -18,7 +18,7 @@
 						<h4>Contact : <strong>${registerModel.user.contactNumber}</strong></h4>
 						<h4>Role : <strong>${registerModel.user.role}</strong></h4>
 						<p>
-							<a href="${flowExecutionUrl}&_eventId_start" class="btn btn-primary">Edit</a>
+							<a href="${flowExecutionUrl}&_eventId_personal" class="btn btn-primary">Edit</a>
 						</p>
 					</div>
 				</div>

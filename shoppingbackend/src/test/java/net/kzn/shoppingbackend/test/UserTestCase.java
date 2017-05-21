@@ -115,14 +115,6 @@ public class UserTestCase {
 
 */
 	
-	@Test
-	public void testListAddresses() {
-		user = userDAO.get(1);
-		List<Address> billingAddresses = userDAO.listAddresses(user, true);
-		List<Address> shippingAddresses = userDAO.listAddresses(user, false);
-		
-		assertEquals("Failed to fetch the billing address!", 1 , billingAddresses.size());
-		assertEquals("Failed to fetch the shipping address!", 1 , shippingAddresses.size());
-	}
+
 	
 }

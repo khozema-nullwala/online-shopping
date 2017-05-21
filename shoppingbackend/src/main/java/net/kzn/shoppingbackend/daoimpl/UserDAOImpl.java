@@ -19,16 +19,7 @@ public class UserDAOImpl implements UserDAO {
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
-	// return the user by id
-	@Override
-	public User get(int id) {
-		return sessionFactory.getCurrentSession().get(User.class, Integer.valueOf(id));
-	}
 
-	
-	
 	@Override
 	public User getByEmail(String email) {
 		String selectQuery = "FROM User WHERE email =:email";
@@ -96,15 +87,21 @@ public class UserDAOImpl implements UserDAO {
 
 
 	@Override
-	public List<Address> listAddresses(User user, boolean isBilling) {
-		String selectQuery = "FROM Address WHERE user = :user AND billing = :isBilling";
+	public List<Address> listShippingAddresses(User user) {
+		String selectQuery = "FROM Address WHERE user = :user AND shipping = :isShipping";
 		return sessionFactory
 				.getCurrentSession()
 					.createQuery(selectQuery,Address.class)
 						.setParameter("user", user)
-						.setParameter("isBilling", isBilling)
+						.setParameter("isShipping", true)
 							.getResultList();
 		
+	}
+
+	@Override
+	public Address getBillingAddress(User user) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
