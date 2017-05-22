@@ -1,5 +1,5 @@
 spring, hibernate, java, jsp, servlet, junit, maven, git, github, education, learning, ecommerce, online shopping, project, complete project, bootstrap, angular js, crud, test cases, unit testing, json, jquery, datatable, postman, google chrome,
-
+hibernate relationship, tutorial, onetoone, bidirectional 
 |-----------------------------------------------------------------
 | Complete Project Step By Step with 
 | Spring, Hibernate, Maven, Angular JS and Bootstrap
@@ -33,11 +33,11 @@ We would also be needing a GitHub account to push the project from local machine
 9. Open the gitignore file and ignore the target folder of both the projects as shown. (for example target folder)
 10. Open window -> Preference -> Filter for Git configuration select it then add two entries if it is not present
 11. Click on Add Entry
-	Key - user.name
-	Value - Your Name
+ Key - user.name
+ Value - Your Name
 12. Again click on Add Entry
-	Key - user.email
-	Value - Your Email Id
+ Key - user.email
+ Value - Your Email Id
 13. Right click on the repository select Commit -> Git Staging view. Select all the files in the unstaged changes and drag it to the Staged Changes. 
 14. Enter your commit message. Click on Commit and Push. It will ask for your credentials enter your github account username and password.
 
@@ -66,7 +66,7 @@ TO BE CONTINUED in PART 02 - Building the user interface in webapp project.
 |-----------------------------------------------------------------
 
 1. We will get the error - 
-The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path	
+The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build Path 
 
 2. We will be using all the latest configuration to work in our project so first we will be changing the version of JRE inside pom.xml 
 
@@ -75,7 +75,7 @@ The superclass "javax.servlet.http.HttpServlet" was not found on the Java Build 
 Right Click on Project -> Maven -> Update Project
 
 4. You will get an error as version mismatch
-	Solution - Right Click on Project -> Properties -> Project Facets -> Uncheck Dynamic Web Module. Ensure java version is to the version you have.
+ Solution - Right Click on Project -> Properties -> Project Facets -> Uncheck Dynamic Web Module. Ensure java version is to the version you have.
 
 Right Click on Project -> Maven -> Update Project
 
@@ -114,17 +114,17 @@ TO BE CONTINUED in PART 02 - 02 - Adding Spring Dependency and Printing a messag
 ------java
 
 4. Add a package in src/main/java directory keeping the following convention for naming it use the convention
-	groupid.artifactid.XXX (where XXX is the group of classes doing specific work)
+ groupid.artifactid.XXX (where XXX is the group of classes doing specific work)
 
 5. We will be creating a controller class that will handle various url mapping like /, /index, /home all will be mapped to the same method handler. It will generate the data (greeting in our case) and along with it the logical view name.
 
 6. Create a views folder inside WEB-INF and add a page.jsp file inside that folder.
-	--src
-	----main
-	------webapp
-	--------WEB-INF
-	----------views
-	------------page.jsp
+ --src
+ ----main
+ ------webapp
+ --------WEB-INF
+ ----------views
+ ------------page.jsp
 
 
 TO BE CONTINUED in PART 02 - 03 - Creating a Spring Bean XML Configuration file to integrate everything together.
@@ -185,16 +185,16 @@ TO BE CONTINUED in PART 02 - 04 - Understanding @RequestParam and @PathVariable
 
 1. A query string is any string that is part of the URL that starts after the '?' where data is transferred through URL in the form of 'key=value' pair.
 
-	http://localhost:8080/onlineshopping/test?greeting=hi&key1=value1&key2=value2
-	http://localhost:8080/onlineshopping/test?greeting=hello
-	http://localhost:8080/onlineshopping/test?greeting=welcome
+ http://localhost:8080/onlineshopping/test?greeting=hi&key1=value1&key2=value2
+ http://localhost:8080/onlineshopping/test?greeting=hello
+ http://localhost:8080/onlineshopping/test?greeting=welcome
 
 
 2. In order to keep the URL clean and make it more SEO friendly we need to access the value from the path for example: -
 
-	http://localhost:8080/onlineshopping/test/hi
-	http://localhost:8080/onlineshopping/test/hello
-	http://localhost:8080/onlineshopping/test/welcome
+ http://localhost:8080/onlineshopping/test/hi
+ http://localhost:8080/onlineshopping/test/hello
+ http://localhost:8080/onlineshopping/test/welcome
 
 
 TO BE CONTINUED in PART 02 - 05 - Creating Landing Page and Loading Static Resources.
@@ -222,11 +222,11 @@ TO BE CONTINUED in PART 02 - 05 - Creating Landing Page and Loading Static Resou
 |-----------------------------------------------------------------
 
 1. Create a directory inside the 
-	--src
-	----main
-	------resources
-	------webapp
-	--------assets
+ --src
+ ----main
+ ------resources
+ ------webapp
+ --------assets
 
 2. Get the bootstrap js, css and fonts files. Also create the directory for images and place it inside the assets directory created in above step.
 
@@ -386,7 +386,7 @@ TO BE CONTINUED in PART 03 - Linking Backend Project with Frontend Project.
 
 |-----------------------------------------------------------------
 | 01 - Creating DTO and DAO classes.
-|-----------------------------------------------------------------	
+|----------------------------------------------------------------- 
 
 1. We will start designing the classes required for our online shopping website. 
 
@@ -394,11 +394,11 @@ TO BE CONTINUED in PART 03 - Linking Backend Project with Frontend Project.
 
 NOTE: if you are using the convention as I'm doing it so it would be 
 
-	groupid.artifactid.dto (for classes that will be used to transfer data to database table where dto stands for Data Transfer Object)
+ groupid.artifactid.dto (for classes that will be used to transfer data to database table where dto stands for Data Transfer Object)
 
-	groupid.artifactid.dao (for interfaces that will be useful in accessing the data where dao stands for Data Access Object)
+ groupid.artifactid.dao (for interfaces that will be useful in accessing the data where dao stands for Data Access Object)
 
-	groupid.artifactid.daoimpl (for classes that will implements interfaces which will be used for accessing the data)
+ groupid.artifactid.daoimpl (for classes that will implements interfaces which will be used for accessing the data)
 
 3. We will start by creating the Category class in the backend project inside the dto package.
 
@@ -516,7 +516,7 @@ TO BE CONTINUED in PART 03 - 04 - Getting H2 Database and Hibernate Dependency.
 |-----------------------------------------------------------------
 
 1. Get the database from the given url and extract it to a location of your choice. 
-					http://www.h2database.com
+     http://www.h2database.com
 
 2. Select the Generic H2 (Server) and you can create a database of your choice.
 
@@ -568,9 +568,9 @@ DATABASE_PASSWORD -
 
 
 4. Three beans will be created i.e. 
-	-- DataSource (providing the connection information of the database)
-	-- SessionFactory (configures application to use Hibernate and create a session object)
-	-- HibernateTransactionManager (to manage the hibernate transactions)
+ -- DataSource (providing the connection information of the database)
+ -- SessionFactory (configures application to use Hibernate and create a session object)
+ -- HibernateTransactionManager (to manage the hibernate transactions)
 
 
 TO BE CONTINUED Part 03 - 06 - Creating our first @Entity class
@@ -771,8 +771,8 @@ com.fasterxml.jackson.core -> jackson-annotations -> 2.8.7
 
 2. Create a JsonDataController whose job will be to provide data in JSON format. At the class level we are going to add a RequestMapping of "/json/data" and for method we will add like all/products and category/{id}/products so the entire url will be 
 
-				/json/data/all/products and 
-				/json/data/category/{id}/products; 
+    /json/data/all/products and 
+    /json/data/category/{id}/products; 
 
 3. Install the Postman or RestClient extension for Google Chrome & Mozilla firefox respectively.
 
@@ -851,9 +851,9 @@ i.e. dataTables.bootstrap.js & dataTables.bootstrap.css
 2. Modify the page.jsp file to add the contextRoot to window global object and also add categoryId to it in listProducts.jsp 
 
 3. We are going to prepare the jsonUrl in javascript to fetch the data in JSON format from the respective controller for this we will be using the contextRoot that was added previously.  
-				
-				contextRoot/json/data/all/products
-				contextRoot/json/data/category/{id}/products
+    
+    contextRoot/json/data/all/products
+    contextRoot/json/data/category/{id}/products
 
 4. Modify the jQuery dataTable code to display the data. We will be using the following properties: 
 
@@ -862,8 +862,8 @@ columns
 
 5. We will use the following url for adding two anchor tags one to view the product and other to add the product to the cart.
 The URL will be:  
-				contextRoot/show/{id}/product
-				contextRoot/cart/add/{id}/product
+    contextRoot/show/{id}/product
+    contextRoot/cart/add/{id}/product
 
 6. We are also going to add the image in this dataTable.
 
@@ -927,19 +927,19 @@ The Simple Logging Facade for Java (SLF4J) serves as a simple facade or abstract
 
 2. We will be using the logback classic which implements slf4j directly and we have to use the jcl-over-slf4j dependency.
     
-		<!-- SLF4J Logging -->
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<version>1.2.1</version>
-		</dependency>	
-		
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>jcl-over-slf4j</artifactId>
-			<version>1.7.24</version>
-		</dependency>	
-						
+  <!-- SLF4J Logging -->
+  <dependency>
+   <groupId>ch.qos.logback</groupId>
+   <artifactId>logback-classic</artifactId>
+   <version>1.2.1</version>
+  </dependency> 
+  
+  <dependency>
+   <groupId>org.slf4j</groupId>
+   <artifactId>jcl-over-slf4j</artifactId>
+   <version>1.7.24</version>
+  </dependency> 
+      
 3. Create a separate logback.xml file in the src-->main-->resources directory.
     It will consist of the following elements
 
@@ -999,8 +999,8 @@ TO BE CONTINUED - Part 04 - 07 - Global Exception Handling.
 |--------------------------------------------------------------------
 
 1. We will create a package following our own standard i.e.
-					groupid.artifactid.exception
-				   net.kzn.onlineshopping.exception
+     groupid.artifactid.exception
+       net.kzn.onlineshopping.exception
 
 2. To handle the exception globally we will create a class annotate it using the ControllerAdvice annotation.
 
@@ -1065,7 +1065,7 @@ TO BE CONTINUED - Part 05 - Spring form elements, Hibernate Validator and Multip
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1086,10 +1086,10 @@ TO BE CONTINUED - Part 05 - Spring form elements, Hibernate Validator and Multip
 
 form -> form-horizontal 
 div -> form-group
-	label -> control-label + column classes
-	div -> column classes
-	input -> form-control
-	span -> help-block
+ label -> control-label + column classes
+ div -> column classes
+ input -> form-control
+ span -> help-block
 
 TO BE CONTINUED - Part 05 - 02 - Adding Spring Form and Linking with the Model
 
@@ -1111,7 +1111,7 @@ TO BE CONTINUED - Part 05 - 02 - Adding Spring Form and Linking with the Model
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1150,7 +1150,7 @@ TO BE CONTINUED - Part 05 - 03 - Storing Product from Spring form to Database
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1183,7 +1183,7 @@ TO BE CONTINUED - Part 05 - 04 - Validating Product Details using Hibernate Vali
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1199,9 +1199,9 @@ TO BE CONTINUED - Part 05 - 04 - Validating Product Details using Hibernate Vali
 </dependency>
 
 <dependency>
-	<groupId>javax.validation</groupId>
-	<artifactId>validation-api</artifactId>
-	<version>1.1.0.Final</version>
+ <groupId>javax.validation</groupId>
+ <artifactId>validation-api</artifactId>
+ <version>1.1.0.Final</version>
 </dependency>
 
 2. Modify the Product class and we can use the different annotation to add server side validation for the field.
@@ -1233,7 +1233,7 @@ TO BE CONTINUED - Part 05 - 05 - Multipart File Upload
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1281,7 +1281,7 @@ TO BE CONTINUED - Part 05 - 06 - Adding a new Category
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1289,11 +1289,11 @@ TO BE CONTINUED - Part 05 - 06 - Adding a new Category
 |--------------------------------------------------------------------
 
 1. Add a new button that will target a modal dialog box in which we are going to provide an option to add a new category.
-	data-toggle 
-	data-target
+ data-toggle 
+ data-target
 
 2. Design the modal dialog box to give an option for creating a category.
-			
+   
 3. Add an ModelAttribute for category to link it with the category form.
 
 4. Download the jQuery validate plugin and will work with client side validation for working with category.
@@ -1316,7 +1316,7 @@ TO BE CONTINUED - Part 05 - 07 - Editing a product
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1342,7 +1342,7 @@ TO BE CONTINUED - Part 05 - 08 - Activating and De-activating a product
 
 |-----------------------------------------------------------------
 | Part 05 - Spring form elements, Hibernate Validator 
-|			and Multipart File Upload.
+|   and Multipart File Upload.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
@@ -1384,6 +1384,10 @@ TO BE CONTINUED - Part 06 - 08 - Validating fields in the flow.
 
 
 
+
+
+
+
 |-----------------------------------------------------------------
 | Complete Project Step By Step with 
 | Spring, Hibernate, Maven, Angular JS and Bootstrap
@@ -1408,6 +1412,42 @@ TO BE CONTINUED - Part 06 - 08 - Validating fields in the flow.
 
 5. Create the DAO and DAOImpl for the User entity. 
 
+6. Copy the logback.xml file from the front-end project to use the similar setting for logging
+
+7. Create separate test class to write test cases for User.
+
+  user = new User() ;
+  user.setFirstName("Hrithik");
+  user.setLastName("Roshan");
+  user.setEmail("hr@gmail.com");
+  user.setContactNumber("1234512345");
+  user.setRole("USER");
+  user.setPassword("123456");
+
+  address = new Address();
+  address.setAddressLineOne("101/B Jadoo Society, Krissh Nagar");
+  address.setAddressLineTwo("Near Kaabil Store");
+  address.setCity("Mumbai");
+  address.setState("Maharashtra");
+  address.setCountry("India");
+  address.setPostalCode("400001");
+  address.setBilling(true);
+
+
+  address = new Address();
+  address.setAddressLineOne("201/B Jadoo Society, Kishan Kanhaiya Nagar");
+  address.setAddressLineTwo("Near Kudrat Store");
+  address.setCity("Mumbai");
+  address.setState("Maharashtra");
+  address.setCountry("India");
+  address.setPostalCode("400001");
+  address.setShipping(true);
+
+8. Add the hbm2ddl.auto property in the HibernateConfig file to understand the mappings and let the hibernate create the tables for us.
+
+update - create the table is not there or update if any changes are there to existing one.
+create - drop the exisiting tables and re-create it.
+
 
 TO BE CONTINUED - Part 06 - 02 - Understanding Hibernate OneToOne Uni-directional Mapping 
 
@@ -1423,25 +1463,28 @@ TO BE CONTINUED - Part 06 - 02 - Understanding Hibernate OneToOne Uni-directiona
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 02 - User Registration using Spring Webflow 
+| 02 - Understanding Hibernate OneToOne Uni-directional Mapping 
 |--------------------------------------------------------------------
 
-1. Copy the logback.xml file from the front-end project to use the similar setting for logging
+1. Remove the userId field and create a user field of type User. Annotate it with OneToOne to work with relationship mapping. 
 
-2. Create separate test class to write test cases for User.
-
-3. Add the hbm2ddl.auto property in the HibernateConfig file to understand the mappings and let the hibernate create the tables for us.
-
-update - create if not there or update if its already there.
-create - drop the exisiting tables and re-create it.
-
-4. Add the OneToOne mapping in the Cart class on the user field.
-
-5. Let us add a user and see the result. 
+2. Add a user and see the result.
 
 
 TO BE CONTINUED - Part 06 - 03 - Understanding Hibernate OneToOne Bi-directional
  Mapping
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 |-----------------------------------------------------------------
@@ -1458,14 +1501,14 @@ TO BE CONTINUED - Part 06 - 03 - Understanding Hibernate OneToOne Bi-directional
 | 03 - Understanding Hibernate OneToOne Bi-directional Mapping 
 |--------------------------------------------------------------------
 
-1. Let us understand the bi-directional relationship so that we can fetch the cart of the user if he/she is a customer. For this we will add a cart field in the User class.
+1. Let us understand the bi-directional relationship so that we can fetch the cart of the user. For this we will add a cart field in the User class.
 
 NOTE: if we don't define who is the owner of the relationship we get the fields created in both the tables. To avoid it we can use the mappedBy attribute to define the relationship owner.
 
 2. Remove the addCart method from the DAO and DAOImpl which is not required as we will creating the cart for the user if the user is a USER.
 
 
-TO BE CONTINUED - Part 06 - 04 - Completing the Address Part
+TO BE CONTINUED - Part 06 - 04 - Completing the Address Part Using ManyToOne
 
 
 
@@ -1486,15 +1529,18 @@ TO BE CONTINUED - Part 06 - 04 - Completing the Address Part
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 04 - Completing the Address Part
+| 04 - Hibernate ManyToOne Mapping on Address
 |--------------------------------------------------------------------
 
-1. We will add the ManyToOne annotation on the Address class first to understand when it is a good idea to use mapping and when to avoid using it.
+1. We will add the ManyToOne annotation on the Address class on the user field and remove the existing userId field.
 
-2. Complete the methods of the UserDAOImpl based on our choice. 
+2. Add methods to the UserDAOImpl related to address. 
 
 3. Write the test cases for Address to check if the list of addresses is fetched or not.
 
+4. Analyze the query executed.
+
+5. Make your choice!
 
 TO BE CONTINUED - Part 06 - 05 - Understanding Spring Webflow
 
@@ -1529,7 +1575,9 @@ TO BE CONTINUED - Part 06 - 05 - Understanding Spring Webflow
 
 
 
+
 TO BE CONTINUED - Part 06 - 06 - Configuring Spring Webflow
+
 
 
 
@@ -1558,7 +1606,7 @@ TO BE CONTINUED - Part 06 - 06 - Configuring Spring Webflow
 | 06 - Configuring Spring Webflow
 |--------------------------------------------------------------------
 
-1. First load the webflow dependency at the right place.
+1. First add the webflow dependency.
     <dependency>
         <groupId>org.springframework.webflow</groupId>
         <artifactId>spring-webflow</artifactId>
@@ -1569,77 +1617,84 @@ TO BE CONTINUED - Part 06 - 06 - Configuring Spring Webflow
 
 3. Add the flow-executor that will handle the flow indicating the entry point in the project.
 
-	<wf:flow-executor id="flowExecutor" />
+ <wf:flow-executor id="flowExecutor" />
 
 NOTE: 
 We have to also specify the flow-registry attribute and specify the id of flow-registry element if not provided it would automatically look for element with id of flowRegistry
 
 4. Add the flow-registry for finding the flows of the application.
 
-   <wf:flow-registry id=“flowRegistry” base-path=“/WEB-INF/views/flows”> 
-   	<wf:flow-location-pattern value=“/**/*-flow.xml” /> 
+   <wf:flow-registry id="flowRegistry" base-path="/WEB-INF/views/flows"> 
+    <wf:flow-location-pattern value=“/**/*-flow.xml” /> 
    </wf:flow-registry> 
 
 NOTE: 
 
-All flows are given IDs (which are ultimately used to reference the flow). Using the URL pattern given here, the flow ID will be the directory path containing the flow definition file relative to the base path (the part represented with the double-asterisk). 
+All flows are given IDs (which are ultimately used to reference the flow). The flow ID will be the directory path containing the flow definition file relative to the base path (the part represented with the double-asterisk). 
 
-Path to the flow file 										Flow Id
+Path to the flow file           Flow Id
 ------------------------------------------------------------------------
-/WEB-INF/views/flows/membership/membership-flow.xml 	    membership				
-/WEB-INF/views/flows/membership/register-flow.xml 			membership	
-/WEB-INF/views/flows/cart/checkout/checkout-flow.xml		cart/checkout  
+/WEB-INF/views/flows/membership/membership-flow.xml      membership    
+/WEB-INF/views/flows/register/signup-flow.xml     register 
+/WEB-INF/views/flows/cart/checkout/checkout-flow.xml  cart/checkout  
 
-In case if you want to use the base path you can use following for indicating the flow file and its id.
+In case if you do not want to use the base path you can use following for indicating the flow file and its id.
 
-	<wf:flow-registry id="flowRegistry"> 
-		<wf:flow-location path="/WEB-INF/views/flows/membership.xml" /> 
-	</wf:flow-registry>
+ <wf:flow-registry id="flowRegistry"> 
+  <wf:flow-location path="/WEB-INF/views/flows/signup-flow.xml" /> 
+ </wf:flow-registry>
 
-NOTE: the rules change for flow id when we are not using base-path for locating the flow file it is the file name itself i.e. "membership"
+NOTE: the rules change for flow id when we are not using base-path for locating the flow file it is the file name itself i.e. "signup-flow"
 
 Or you can be even more explicit about the flow ID by specifying an id attribute of the <wf:flow-location> element:
 
-	<wf:flow-registry id="flowRegistry"> 
-	 <wf:flow-location id="register" path="/WEB-INF/views/flows/membership.xml" /> 
-	</wf:flow-registry>
+ <wf:flow-registry id="flowRegistry"> 
+  <wf:flow-location id="register" path="/WEB-INF/views/flows/signup-flow.xml" /> 
+ </wf:flow-registry>
 
 5. To customize the flow-registry and provide additional configuration we are going to use the flow-builder-services but first we would be adding
-		flow-builder-services="flowBuilderServices" in the registry.
-	
-	<wf:flow-builder-services id="flowBuilderServices"
-    	view-factory-creator="viewFactoryCreatory"
-	/>
+  flow-builder-services="flowBuilderServices" in the registry.
+ 
+ <wf:flow-builder-services id="flowBuilderServices"
+     view-factory-creator="viewFactoryCreatory"
+ />
  
 6. Spring Web Flow provides a Spring MVC handler adapter called FlowHandlerAdapter. This handler adapter is the bridge between DispatcherServlet and the flow executor, handling requests and manipulating the flow based on those requests. 
-	
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
-		<property name="flowExecutor" ref="flowExecutor" />
-	</bean>	
+ 
+ <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+  <property name="flowExecutor" ref="flowExecutor" />
+ </bean> 
 
 7. DispatcherServlet knows how to dispatch requests by consulting with one or more handler mappings. For web flows, FlowHandlerMapping helps DispatcherServlet know to send flow requests to the FlowHandlerAdapter:
 
-	<bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
-		<property name="flowRegistry" ref="flowRegistry" />
-		<property name="order" value="-1" />
-	</bean>
+ <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+  <property name="flowRegistry" ref="flowRegistry" />
+ </bean>
 
 Here for any incoming request, the Spring Webflow registry will be checked to see whether any guided flows are configured. That is why we make the order for Spring Webflow ‘-1’.  The flow registry contains all the flows available in the application. If a guided flow is found then the flow executor is initiated.
 
 
 8. For resolving views for web flow we will add one more bean which will point to the view resolver  - 
-   	<bean id="viewFactoryCreator"
+    <bean id="viewFactoryCreator"
    class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
          <property name="viewResolvers">
              <list>
                  <ref bean="viewResolver" />
              </list>
          </property>
- 	</bean>	
+  </bean> 
 
 
 
 TO BE CONTINUED - Part 06 - 07 - Creating membership flow file. 
+
+
+
+
+
+
+
+
 
 
 
@@ -1654,18 +1709,18 @@ TO BE CONTINUED - Part 06 - 07 - Creating membership flow file.
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 07 - Creating membership flow file
+| 07 - Creating flow file
 |--------------------------------------------------------------------
 
 1. We will add the directory and flow file to it and then use the inbuild flow id to reference it in the page.jsp page.
 
-Path to the flow file 										Flow Id
+Path to the flow file           Flow Id
 ------------------------------------------------------------------------
-/WEB-INF/views/flows/register/signup-flow.xml 				register
+/WEB-INF/views/flows/register/signup-flow.xml     register
 
-2. Add a menu to the navbar jsp for registering a new user. We are going to use the flow id in the href along with our contextRoot to start the flow. 
+2. Add a menu to the navbar.jsp for registering a new user. We are going to use the flow id in the href along with our contextRoot to start the flow. 
 
-3. To render the view based on the user action we will create flow file. It requires the namespace to use different flow elements. For getting the namespace we can refer webflow documentation.
+3. To execute the triggered flow we will we need to provide details about the state and view for the flow. It requires the namespace to use different flow elements. For getting the namespace we can refer webflow documentation.
 
 http://docs.spring.io/spring-webflow/docs/2.4.4.RELEASE/reference/html/
 
@@ -1677,69 +1732,57 @@ http://docs.spring.io/spring-webflow/docs/2.4.4.RELEASE/reference/html/
 
 </flow>
 
-4. We will add different elements related to the flow.
+4. We will add a single view state for now to the flow and add the corresponding signup-personal.jsp view page and 
 
-5. Let us create a signup-personal.jsp page and add it to the view-state.
+5. We are going to add simple navbar for the flow
 
-6. Test everything!
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+         <a class="navbar-brand" href="">Home</a>
+        </div>
+     </div>
+</nav>
 
 
-TO BE CONTINUED - Part 06 - 08 - Completing the views in webflow with model
+6. Add the end state for home so that we can cancelled the guided navigation and redirect the user to home.
 
+7. Test everything!
 
+8. Now when everything works well separate out the header and footer inside shared directory of flows.
 
-
-|-----------------------------------------------------------------
-| Complete Project Step By Step with 
-| Spring, Hibernate, Maven, Angular JS and Bootstrap
-| - Khozema Nullwala
-|-----------------------------------------------------------------
-
-|-----------------------------------------------------------------
-| Part 06 - Working with Registration Module using Spring Web flow
-|-----------------------------------------------------------------
-
-|--------------------------------------------------------------------
-| 08 - Adding all the views for the flow
-|--------------------------------------------------------------------
-
-1. Complete the singup-personal.jsp page by adding the spring form element as it requires modelAttribute we are going to use the var elemenent of flow that will create a flow instance variable.
-
-2. Similarly we are going to add the remaining spring form element for all the pages and we will have a page where all the confirmation details will be there.
-
-3. The user will finally submit the details and it would be forwarded to a thanks page.
+WEB-INF
+ ----views
+ --------flows
+ ------------register       
+     signup-personal.jsp         ../shared/flow-header.jsp
+ ------------shared
+     flow-header.jsp     flow-navbar.jsp
+     flow-footer.jsp             ../../shared/footer.jsp
+     flow-navbar.jsp            
 
 
 
 
 
-
-
-
-TO BE CONTINUED - Part 06 - 09 - Writing a handler for handling action in flow
-
+TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
 
 
 
 
-|-----------------------------------------------------------------
-| Complete Project Step By Step with 
-| Spring, Hibernate, Maven, Angular JS and Bootstrap
-| - Khozema Nullwala
-|-----------------------------------------------------------------
-
-|-----------------------------------------------------------------
-| Part 06 - Working with Registration Module using Spring Web flow
-|-----------------------------------------------------------------
-
-|--------------------------------------------------------------------
-| 07 - Writing a handler for flow
-|--------------------------------------------------------------------
 
 
 
 
-TO BE CONTINUED - Part 06 - 08 - Validating fields in the flow
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1756,12 +1799,329 @@ TO BE CONTINUED - Part 06 - 08 - Validating fields in the flow
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 08 - Validating fields in the flow
+| 08 - Spring webflow with model and all navigation
+|--------------------------------------------------------------------
+
+1. Complete the signup-personal.jsp page by adding the spring form element as it requires modelAttribute we are going to use the var element of flow that will create a flow instance variable.
+
+  
+<div class="row">
+ 
+ <div class="col-md-6 col-md-offset-3">
+  
+  <div class="panel panel-primary">
+  
+   <div class="panel-heading">
+    <h4>Sign Up - Personal</h4>
+   </div>
+   
+   <div class="panel-body">
+        
+    <sf:form
+     method="POST"
+     class="form-horizontal"
+     id="registerForm"
+    >
+      
+       
+    <div class="form-group">
+     <label class="control-label col-md-4">First Name</label>
+     <div class="col-md-8">
+      <sf:input type="text" path="firstName" class="form-control"
+       placeholder="First Name" />
+      <sf:errors path="firstName" cssClass="help-block" element="em"/> 
+     </div>
+    </div>
+
+
+       <div class="form-group">
+        <label class="control-label col-md-4">Last Name</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="lastName" class="form-control"
+          placeholder="Last Name" />
+         <sf:errors path="lastName" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+      
+       <div class="form-group">
+        <label class="control-label col-md-4">Email</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="email" class="form-control"
+          placeholder="abc@zyx.com" />
+         <sf:errors path="email" cssClass="help-block" element="em"/>          
+        </div>
+       </div>
+
+       <div class="form-group">
+        <label class="control-label col-md-4">Contact Number</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="contactNumber" class="form-control"
+          placeholder="XXXXXXXXXX" maxlength="10" />
+         <sf:errors path="contactNumber" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+       
+       <div class="form-group">
+        <label class="control-label col-md-4">Password</label>
+        <div class="col-md-8">
+         <sf:input type="password" path="password" class="form-control"
+          placeholder="Password" />
+         <sf:errors path="password" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+       
+       <div class="form-group">
+        <label class="control-label col-md-4">Confirm Password</label>
+        <div class="col-md-8">
+         <sf:input type="password" path="confirmPassword" class="form-control"
+          placeholder="Re-type password" />
+         <sf:errors path="confirmPassword" cssClass="help-block" element="em"/>           
+        </div>
+       </div>
+       <!-- radio button using bootstrap class of radio-inline -->
+	   <div class="form-group">
+	     <label class="control-label col-md-4">Select Role</label>
+	     <div class="col-md-8">
+	       <label class="radio-inline">
+	        <sf:radiobutton path="role" value="USER" checked="checked"/> User     
+	       </label>
+	       <label class="radio-inline">
+	        <sf:radiobutton path="role" value="SUPPLIER"/> Supplier
+	       </label>
+	     </div>
+	    </div>       
+
+       <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+				<!-- submit button inside the formv -->
+
+        </div>
+       </div>
+
+      </sf:form>     
+     </div>
+    </div>
+   </div>
+  </div>
+  
+
+2. Similarly we are going to add the signup-billing.jsp view along with the billing address model.
+
+ <div class="row">
+   
+   <div class="col-md-6 col-md-offset-3">
+    
+    <div class="panel panel-primary">
+    
+     <div class="panel-heading">
+      <h4>Sign Up - Address</h4>
+     </div>
+     
+     <div class="panel-body">
+          
+      <sf:form
+       method="POST"      
+       class="form-horizontal"
+       id="billingForm"
+      >
+      
+       
+       <div class="form-group">
+        <label class="control-label col-md-4" for="addressLineOne">Address Line One</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="addressLineOne" class="form-control"
+          placeholder="Enter Address Line One" />
+         <sf:errors path="addressLineOne" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+
+       <div class="form-group">
+        <label class="control-label col-md-4" for="addressLineTwo">Address Line Two</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="addressLineTwo" class="form-control"
+          placeholder="Enter Address Line Two" />
+         <sf:errors path="addressLineTwo" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+
+       <div class="form-group">
+        <label class="control-label col-md-4" for="city">City</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="city" class="form-control"
+          placeholder="Enter City Name" />
+         <sf:errors path="city" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+       
+       <div class="form-group">
+        <label class="control-label col-md-4" for="postalCode">Postal Code</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="postalCode" class="form-control"
+          placeholder="XXXXXX" />
+         <sf:errors path="postalCode" cssClass="help-block" element="em"/> 
+        </div>
+       </div>       
+      
+       <div class="form-group">
+        <label class="control-label col-md-4" for="state">State</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="state" class="form-control"
+          placeholder="Enter State Name" />
+         <sf:errors path="state" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+
+       <div class="form-group">
+        <label class="control-label col-md-4" for="country">Country</label>
+        <div class="col-md-8">
+         <sf:input type="text" path="country" class="form-control"
+          placeholder="Enter Country Name" />
+         <sf:errors path="country" cssClass="help-block" element="em"/> 
+        </div>
+       </div>
+       
+       
+       <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+        	<!-- submit button for moving to the personal -->
+
+
+        	<!-- submit button for moving to the confirm -->
+
+        </div>
+       </div>
+      
+      
+      </sf:form>     
+     </div>
+    </div>
+   </div>
+  </div>
+
+
+
+3. Create the signup-confirm.jsp page where we would be able to see the details. It requires data from two different models.
+
+  <div class="row">
+ 
+  <!-- column to display the personal details -->
+  <div class="col-sm-6">
+ 
+   <div class="panel panel-primary">    
+    <div class="panel-heading">
+     <h4>Personal Details</h4>
+    </div>
+    <div class="panel-body">
+     <!-- code to display the personal details -->
+    </div>   
+   </div>
+       
+  </div>
+  
+  <!-- column to display the address  -->
+  <div class="col-sm-6">  
+   
+   <div class="panel panel-primary">    
+    <div class="panel-heading">
+     <h4>Billing Address</h4>
+    </div>
+    <div class="panel-body">
+		<!-- code to display the communication address -->
+    </div>   
+   </div>  
+  
+  </div>
+ 
+ </div>
+ 
+ <!-- to provide the confirm button after displaying the details -->
+ <div class="row">  
+  <div class="col-sm-4 col-sm-offset-4">   
+   
+   <div class="text-center">
+    
+    <!-- anchor to move to the success page -->
+        
+   </div>
+   
+  </div>  
+ </div>
+
+
+4. The user will finally submit the details and it would be forwarded to a thanks page.
+
+ <div class="row">
+ 
+  <div class="col-sm-offset-4 col-sm-4">
+   
+   <div class="text-center">  
+    <h1>Welcome!</h1>
+    <h3>onlineshopping.com</h3>
+    <h6>You can use your email address as username to login!</h6>
+    <div>
+     <a href="${contextRoot}/login" class="btn btn-lg btn-success">Login Here</a>
+    </div>
+   </div>
+  
+  </div>
+ 
+ </div>
+  
+
+
+TO BE CONTINUED - Part 06 - 09 - Spring Webflow Using Composite Model And Handler.
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 06 - Working with Registration Module using Spring Web flow
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 09 - Spring Webflow Using Composite Model And Handler.
+|--------------------------------------------------------------------
+
+1. Create a RegisterModel class which will hold both the user and billing address.
+
+2. Create a RegisterHandler class to provide the above model at the start of the flow along with both the flow instance variable fields.
+
+3. On exit of each state store the flow instance inside the register model.
+
+4. Use this model to display the data entered by the user inside the signup-confirm page.
+
+5. Create the save method that would be called once when the user confirm the details.
+
+TO BE CONTINUED - Part 06 - 10 - Spring Webflow With Validation 
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 06 - Working with Registration Module using Spring Web flow
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 10 - Spring Webflow With Validation 
 |--------------------------------------------------------------------
 
 1. Add the following bean to ensure hibernate validation works with our spring form 
-	<!-- For hibernate validator -->
-	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+ <!-- For hibernate validator -->
+ <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
  
 2. The validator attribute will be added to the flow-builder-services  
 
@@ -1786,14 +2146,396 @@ TO BE CONTINUED - Part 07 - Authentication & Authorization Using Spring Security
 
 
 
---------------------------------------------------------------------
-Part 07 - Working with Authentication Module and Spring Security
---------------------------------------------------------------------
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 01 - Spring Security Dependency and Configuration  
+|--------------------------------------------------------------------
+
+1. Add the following dependency to the front-end project.
+		
+		<spring.security.version>4.2.2.RELEASE</spring.security.version>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+2. Configure the web.xml file to filter the incoming request and applying the security configuration.
+
+	<!-- Configuration for spring security -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	
+	<!-- Load spring security config file -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/spring-security.xml
+		</param-value>
+	</context-param>
+	
+	<!-- Spring Security filter -->
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter>
+	
+	<filter-mapping>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/**</url-pattern>	
+	</filter-mapping>
+
+
+3. Create the spring-security.xml file in the WEB-INF directory and add the namespace to it.
+
+https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+xmlns:beans="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+	...
+</beans:beans>
+
+4. To enable web security all we need to add is the http element.
+
+5. Provide the authentication manager and authentication provider which uses difference in built service to authenticate and authorize a user.
+
+6. Understand the difference between hasRole and hasAuthority 
+
+
+TO BE CONTINUED - Part 07 - 02 - Spring Security Using jdbc-user-service  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 02 - Spring Security Using jdbc-user-service  
+|--------------------------------------------------------------------
+
+1. We will add a new jdbc-user-service element and assign values to the three important attributes of it that is
+data-source-ref
+authorities-by-username-query
+users-by-username-query  
+
+NOTE: we will get an error it is not able to find the dataSource bean.
+
+2. Add the context:component-scan of our backend application to the spring-security.xml file and assign a name to the dataSource bean created before.
+
+3. We are going to provide a custom login page at a request mapping of /login for this we will have to use the login-page attribute.
+
+4. Add a custom login page mapping inside the page controller. 
+
+5. Create the login.jsp page.
+
+6. Add a separate intercept-url pattern for displaying the login page.
+
+7. Add a separate http element to allow loading of static resources which does not require any form of security. 
+
+8. Also arrange the rest of the url 
+
+
+TO BE CONTINUED - Part 07 - 03 - Spring Security Login Page With jQuery Validation
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 03 - Spring Security Login Page With jQuery Validation 
+|--------------------------------------------------------------------
+
+1. We are going to design a simple html form with the following two input elements textboxes having the name parameter as 
+
+username (default name) to change it we have to use username-parameter
+password (default name) to change it we have to use password-parameter
+
+   <div class="container">
+    
+    <div class="row">
+     
+     <div class="col-md-offset-3 col-md-6">
+      
+      <div class="panel panel-primary">
+       
+       <div class="panel-heading">
+        <h4>Login</h4>
+       </div>
+       
+       <div class="panel-body">
+        <form action="${contextRoot}/login" method="POST" class="form-horizontal"
+         id="loginForm"
+        >
+         <div class="form-group">
+          <label for="username" class="col-md-4 control-label">Email: </label>
+          <div class="col-md-8">
+           <input type="text" name="username" id="username" class="form-control"/>
+          </div>
+         </div>
+         <div class="form-group">
+          <label for="password" class="col-md-4 control-label">Password: </label>
+          <div class="col-md-8">
+           <input type="password" name="password" id="password" class="form-control"/>
+          </div>
+         </div>
+         <div class="form-group">
+          <div class="col-md-offset-4 col-md-8">
+           <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+           <input type="submit" value="Login" class="btn btn-primary"/>
+          </div>
+         </div>
+        </form>
+       
+       </div>
+      
+      </div> 
+    
+     </div>
+     
+    </div>    
+   
+   </div>
+
+
+2. To validate the form we are going to use client side validation by using jQuery validator.
+
+3. After clicking on the submit we get an error related to CSRF. By default csrf is enabled in spring security and it provides us with protection from CSRF attack right out of the box
+
+More can be read at: 
+https://www.incapsula.com/web-application-security/csrf-cross-site-request-forgery.html
+
+To solve this we either 
+a. disable the csrf protection (not recommended)
+b. or provide an hidden field that will keep the csrf token that only server recognize when the form is submitted.
+
+4. Handle invalid credentials inside the /login request handler. For this we will use the @RequestParam page.
+
+
+
+TO BE CONTINUED - Part 07 - 04 - Custom Access Denied Page 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 04 - Custom Access Denied Page  
+|--------------------------------------------------------------------
+
+
+
+1. Add the access-denied-handler element with the error-page attribute
+
+2. Create the request mapping and handler method to display the view.
+
+
+
+
+TO BE CONTINUED - Part 07 - 05 - Spring Security Password Encryption 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 05 - Spring Security Password Encryption  
+|--------------------------------------------------------------------
+
+1. Add a bean element to the spring-security.xml file with the fully qualified name as given below:
+
+<beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+
+2. Autowired the bean inside the RegisterHandler that we created for registering a user and call the encode method on user entered password. 
+
+3. Since we are using hashed password now we have to decode the password that was encoded for this we will use the pasword-encoder element inside the authentication provider.
+
+4. Test everything!
+
+
+
+TO BE CONTINUED - Part 07 - 06 - Hiding Menu and Displaying Cart 
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 06 - Hiding Menu and Displaying Cart  
+|--------------------------------------------------------------------
+
+1. Open the navbar.jsp and add security tag library to it.
+
+2. Use the authorize element along with its access attribute to provide access to a particular menu.
+
+3. Since we require cart to be available on the navbar.jsp it is a good idea to provide cart model through a globalcontroller which can be created using @ControllerAdvice annotation.
+
+4. Add the cart to the session and access from it everytime rather than querying the database.
+
+
+
+TO BE CONTINUED - Part 07 - 07 - Handling the logout
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 07 - Handling the logout 
+|--------------------------------------------------------------------
+
+1. 
+
+
+
 --------------------------------------------------------------------
-Part 08 - Working with Cart Module for Customer
+Part 08 - Working with Cart Module for User
 --------------------------------------------------------------------
+
 
 
 --------------------------------------------------------------------
@@ -1805,89 +2547,89 @@ Part 09 - Working with Checkout Module using Webflow
 
 // jQuery Validation Code
 
-	//methods required for validation
-	
-	function errorPlacement(error, element) {
-		// Add the 'help-block' class to the error element
-		error.addClass("help-block");
-		
-		// add the error label after the input element
-		error.insertAfter(element);
-		
-		
-		// add the has-feedback class to the
-		// parent div.validate in order to add icons to inputs
-		element.parents(".validate").addClass("has-feedback");	
+ //methods required for validation
+ 
+ function errorPlacement(error, element) {
+  // Add the 'help-block' class to the error element
+  error.addClass("help-block");
+  
+  // add the error label after the input element
+  error.insertAfter(element);
+  
+  
+  // add the has-feedback class to the
+  // parent div.validate in order to add icons to inputs
+  element.parents(".validate").addClass("has-feedback"); 
 
-		// Add the span element, if doesn't exists, 
-		// and apply the icon classes to it.
-		if (!element.next("span")[0]) {
-			$("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
-		}
-	}	
-	
-	function highlight(element, errorClass, validClass) {
-		$(element).parents(".validate")
-					.addClass("has-error")
-						.removeClass("has-success");
-		$(element).next("span").addClass(
-				"glyphicon-remove").removeClass(
-				"glyphicon-ok");
-	}
+  // Add the span element, if doesn't exists, 
+  // and apply the icon classes to it.
+  if (!element.next("span")[0]) {
+   $("<span class='glyphicon glyphicon-remove form-control-feedback'></span>").insertAfter(element);
+  }
+ } 
+ 
+ function highlight(element, errorClass, validClass) {
+  $(element).parents(".validate")
+     .addClass("has-error")
+      .removeClass("has-success");
+  $(element).next("span").addClass(
+    "glyphicon-remove").removeClass(
+    "glyphicon-ok");
+ }
 
-	function unhighlight(element, errorClass, validClass) {
-		$(element).parents(".validate")
-					.addClass("has-success")
-						.removeClass("has-error");
-		$(element).next("span").addClass(
-				"glyphicon-ok").removeClass(
-				"glyphicon-remove");
-	}
-	
-	
-	
-	// validating the product form element	
-	// fetch the form element
-	$categoryForm = $('#categoryForm');
-	
-	if($categoryForm.length) {
-		
-		$categoryForm.validate({			
-				rules: {
-					name: {
-						required: true,
-						minlength: 3
-					},
-					description: {
-						required: true,
-						minlength: 3					
-					}				
-				},
-				messages: {					
-					name: {
-						required: 'Please enter product name!',
-						minlength: 'Please enter atleast five characters'
-					},
-					description: {
-						required: 'Please enter product name!',
-						minlength: 'Please enter atleast five characters'
-					}					
-				},
-				errorElement : "em",
-				errorPlacement : function(error, element) {
-					errorPlacement(error, element);
-				},
-				highlight : function(element, errorClass, validClass) {
-					highlight(element, errorClass, validClass);
-				},
-				unhighlight : function(element, errorClass, validClass) {
-					unhighlight(element, errorClass, validClass);
-				}				
-			}
-		
-		);
-		
-	}
+ function unhighlight(element, errorClass, validClass) {
+  $(element).parents(".validate")
+     .addClass("has-success")
+      .removeClass("has-error");
+  $(element).next("span").addClass(
+    "glyphicon-ok").removeClass(
+    "glyphicon-remove");
+ }
+ 
+ 
+ 
+ // validating the product form element 
+ // fetch the form element
+ $categoryForm = $('#categoryForm');
+ 
+ if($categoryForm.length) {
+  
+  $categoryForm.validate({   
+    rules: {
+     name: {
+      required: true,
+      minlength: 3
+     },
+     description: {
+      required: true,
+      minlength: 3     
+     }    
+    },
+    messages: {     
+     name: {
+      required: 'Please enter product name!',
+      minlength: 'Please enter atleast five characters'
+     },
+     description: {
+      required: 'Please enter product name!',
+      minlength: 'Please enter atleast five characters'
+     }     
+    },
+    errorElement : "em",
+    errorPlacement : function(error, element) {
+     errorPlacement(error, element);
+    },
+    highlight : function(element, errorClass, validClass) {
+     highlight(element, errorClass, validClass);
+    },
+    unhighlight : function(element, errorClass, validClass) {
+     unhighlight(element, errorClass, validClass);
+    }    
+   }
+  
+  );
+  
+ }
 
 
 $('#myform :checkbox').change(function() {

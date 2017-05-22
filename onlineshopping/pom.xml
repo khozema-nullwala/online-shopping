@@ -12,6 +12,8 @@
 	<properties>
 		<javaee.version>7.0</javaee.version>
 		<spring.version>4.3.6.RELEASE</spring.version>
+		<spring.security.version>4.2.2.RELEASE</spring.security.version>
+		
 	</properties>
 
 	<dependencies>
@@ -72,6 +74,26 @@
 	        <artifactId>spring-webflow</artifactId>
 	        <version>2.4.4.RELEASE</version>
 	    </dependency>
+	    
+	    <!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+	    
 	    
 	</dependencies>
 	<build>

@@ -1,3 +1,5 @@
+<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -24,16 +26,32 @@
                     <li id="listProducts">
                         <a href="${contextRoot}/show/all/products">View Products</a>
                     </li>
-
-                    <li id="manageProduct">
-                        <a href="${contextRoot}/manage/product">Manage Product</a>
-                    </li>
+					<security:authorize access="hasAuthority('ADMIN')">
+	                    <li id="manageProduct">
+	                        <a href="${contextRoot}/manage/product">Manage Product</a>
+	                    </li>					
+					</security:authorize>
                 </ul>
 			    
 			    <ul class="nav navbar-nav navbar-right">
-                    <li id="signup">
-                        <a href="${contextRoot}/membership">Sign Up</a>
-                    </li>
+			    	<security:authorize access="isAnonymous()">
+	                    <li id="signup">
+	                        <a href="${contextRoot}/membership">Sign Up</a>
+	                    </li>
+						<li id="login">
+	                        <a href="${contextRoot}/login">Login</a>
+	                    </li>                    			    	
+			    	</security:authorize>
+			    	<security:authorize access="isAuthenticated()">
+	                    <li id="cart">
+	                        <a href="${contextRoot}/cart/${cart.id}">
+	                        	<span class="glyphicon glyphicon-shopping-cart"></span>&#160;<span class="badge">${cart.cartLines}</span> - &#8377; ${cart.grandTotal} 
+	                        </a>
+	                    </li>
+						<li id="logout">
+	                        <a href="${contextRoot}/logout">Logout</a>
+	                    </li>                    			    	
+			    	</security:authorize>                    
 			    </ul>                
                 
             </div>

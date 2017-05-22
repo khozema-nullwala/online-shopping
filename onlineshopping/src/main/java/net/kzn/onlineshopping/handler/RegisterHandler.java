@@ -3,6 +3,7 @@ package net.kzn.onlineshopping.handler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.binding.message.MessageBuilder;
 import org.springframework.binding.message.MessageContext;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import net.kzn.onlineshopping.model.RegisterModel;
@@ -14,6 +15,11 @@ import net.kzn.shoppingbackend.dto.User;
 @Component
 public class RegisterHandler {
 
+
+ @Autowired
+ private PasswordEncoder passwordEncoder;
+	
+	
  @Autowired
  private UserDAO userDAO;
  public RegisterModel init() { 
@@ -50,6 +56,10 @@ public class RegisterHandler {
    cart.setUser(user);
    user.setCart(cart);
   }
+   
+  // encode the password
+  user.setPassword(passwordEncoder.encode(user.getPassword()));
+  
   // save the user
   userDAO.add(user);
   // save the billing address

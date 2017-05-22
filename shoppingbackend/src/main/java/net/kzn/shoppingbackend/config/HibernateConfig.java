@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -26,7 +27,7 @@ public class HibernateConfig {
 	private final static String DATABASE_PASSWORD = "";
 	
 	// dataSource bean will be available
-	@Bean
+	@Bean("dataSource")
 	public DataSource getDataSource() {
 		
 		BasicDataSource dataSource = new BasicDataSource();
