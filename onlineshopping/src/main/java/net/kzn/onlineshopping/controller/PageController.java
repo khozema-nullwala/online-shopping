@@ -1,11 +1,18 @@
 package net.kzn.onlineshopping.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.kzn.onlineshopping.exception.ProductNotFoundException;
@@ -26,7 +33,7 @@ public class PageController {
 	private ProductDAO productDAO;
 	
 	@RequestMapping(value = {"/", "/home", "/index"})
-	public ModelAndView index() {		
+	public ModelAndView index(@RequestParam(name="logout",required=false)String logout) {		
 		ModelAndView mv = new ModelAndView("page");		
 		mv.addObject("title","Home");
 		
@@ -35,6 +42,11 @@ public class PageController {
 		
 		//passing the list of categories
 		mv.addObject("categories", categoryDAO.list());
+		
+		
+		if(logout!=null) {
+			mv.addObject("message", "You have successfully logged out!");			
+		}
 		
 		mv.addObject("userClickHome",true);
 		return mv;				
@@ -135,11 +147,27 @@ public class PageController {
 	
 	
 	@RequestMapping(value="/login")
-	public ModelAndView login() {
+	public ModelAndView login(@RequestParam(name="error", required = false)	String error) {
 		ModelAndView mv= new ModelAndView("login");
-		mv.addObject("title", "Login");		
+		mv.addObject("title", "Login");
+		if(error!=null) {
+			mv.addObject("message", "Username and Password is invalid!");
+		}
 		return mv;
 	}
+	
+	@RequestMapping(value="/logout")
+	public String logout(HttpServletRequest request, HttpServletResponse response) {
+		// Invalidates HTTP Session, then unbinds any objects bound to it.
+	    // Removes the authentication from securitycontext 		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	    if (auth != null){    
+	        new SecurityContextLogoutHandler().logout(request, response, auth);
+	    }
+		
+		return "redirect:/home?logout";
+	}	
+	
 	
 	@RequestMapping(value="/access-denied")
 	public ModelAndView accessDenied() {

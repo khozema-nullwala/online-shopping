@@ -95,17 +95,27 @@ $(function() {
 											+ data
 											+ '/product" class="btn btn-primary"><span class="glyphicon glyphicon-eye-open"></span></a> &#160;';
 
-									if (row.quantity < 1) {
-										str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
-									} else {
-
-										str += '<a href="'
-												+ window.contextRoot
-												+ '/cart/add/'
-												+ data
-												+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+									
+									if(userRole !== 'ADMIN') {
+										if (row.quantity < 1) {
+											str += '<a href="javascript:void(0)" class="btn btn-success disabled"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										} else {
+	
+											str += '<a href="'
+													+ window.contextRoot
+													+ '/cart/add/'
+													+ data
+													+ '/product" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart"></span></a>';
+										}
 									}
-
+									else {
+										str += '<a href="'
+											+ window.contextRoot
+											+ '/manage/'
+											+ data
+											+ '/product" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a>';
+									}
+									
 									return str;
 
 								}
@@ -207,6 +217,7 @@ $(function() {
 							var dText = (this.checked)? 'You want to activate the Product?': 'You want to de-activate the Product?';
 							var checked = this.checked;
 							var checkbox = $(this);
+							debugger;
 						    bootbox.confirm({
 						    	size: 'medium',
 						    	title: 'Product Activation/Deactivation',
@@ -214,7 +225,7 @@ $(function() {
 						    	callback: function (confirmed) {
 							        if (confirmed) {
 							            $.ajax({							            	
-							            	type: 'POST',
+							            	type: 'GET',
 							            	url: window.contextRoot + '/manage/product/'+checkbox.prop('value')+'/activation',
 							        		timeout : 100000,
 							        		success : function(data) {

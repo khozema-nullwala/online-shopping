@@ -123,7 +123,7 @@ public class ManagementController {
 	}
 
 	
-	@RequestMapping(value = "/product/{id}/activation", method=RequestMethod.POST)
+	@RequestMapping(value = "/product/{id}/activation", method=RequestMethod.GET)
 	@ResponseBody
 	public String managePostProductActivation(@PathVariable int id) {		
 		Product product = productDAO.get(id);

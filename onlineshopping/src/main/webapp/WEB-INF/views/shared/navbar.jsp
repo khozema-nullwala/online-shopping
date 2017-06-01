@@ -1,5 +1,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-
+	<script>
+		window.userRole = '${userModel.role}';
+	</script>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
@@ -40,17 +42,28 @@
 	                    </li>
 						<li id="login">
 	                        <a href="${contextRoot}/login">Login</a>
-	                    </li>                    			    	
+	                    </li> 			    	
 			    	</security:authorize>
 			    	<security:authorize access="isAuthenticated()">
-	                    <li id="cart">
-	                        <a href="${contextRoot}/cart/${cart.id}">
-	                        	<span class="glyphicon glyphicon-shopping-cart"></span>&#160;<span class="badge">${cart.cartLines}</span> - &#8377; ${cart.grandTotal} 
-	                        </a>
-	                    </li>
-						<li id="logout">
-	                        <a href="${contextRoot}/logout">Logout</a>
-	                    </li>                    			    	
+						<li class="dropdown">
+						  <a class="btn btn-default dropdown-toggle" href="javascript:void(0)" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+						    ${userModel.fullName}
+						    <span class="caret"></span>
+						  </a>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+		                    <security:authorize access="hasAuthority('USER')">
+			                    <li id="cart">
+			                        <a href="${contextRoot}/cart/${userModel.cart.id}">
+			                        	<span class="glyphicon glyphicon-shopping-cart"></span>&#160;<span class="badge">${userModel.cart.cartLines}</span> - &#8377; ${userModel.cart.grandTotal} 
+			                        </a>
+			                    </li>		     
+			                	<li role="separator" class="divider"></li>	                                   
+		                    </security:authorize>
+							<li id="logout">
+		                        <a href="${contextRoot}/logout">Logout</a>
+		                    </li>                    			    	
+						  </ul>		
+						</li>    			    
 			    	</security:authorize>                    
 			    </ul>                
                 
