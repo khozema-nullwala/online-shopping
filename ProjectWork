@@ -1,5 +1,4 @@
-spring, hibernate, java, jsp, servlet, junit, maven, git, github, education, learning, ecommerce, online shopping, project, complete project, bootstrap, angular js, crud, test cases, unit testing, json, jquery, datatable, postman, google chrome,
-hibernate relationship, tutorial, onetoone, bidirectional 
+spring, hibernate, java, jsp, servlet, junit, maven, git, github, education, learning, ecommerce, online shopping, project, complete project, bootstrap, angular js, spring security
 |-----------------------------------------------------------------
 | Complete Project Step By Step with 
 | Spring, Hibernate, Maven, Angular JS and Bootstrap
@@ -1712,9 +1711,9 @@ TO BE CONTINUED - Part 06 - 07 - Creating membership flow file.
 | 07 - Creating flow file
 |--------------------------------------------------------------------
 
-1. We will add the directory and flow file to it and then use the inbuild flow id to reference it in the page.jsp page.
+1. We will create the directory and add flow file to it. Using the inbuild flow id we will trigger the flow.
 
-Path to the flow file           Flow Id
+Path to the flow file           				  Flow Id
 ------------------------------------------------------------------------
 /WEB-INF/views/flows/register/signup-flow.xml     register
 
@@ -1744,22 +1743,24 @@ http://docs.spring.io/spring-webflow/docs/2.4.4.RELEASE/reference/html/
      </div>
 </nav>
 
+6. Add the global transition to move to the home and end the state.
 
-6. Add the end state for home so that we can cancelled the guided navigation and redirect the user to home.
+7. Add the end state for home so that we can cancelled the guided navigation and redirect the user to home.
 
-7. Test everything!
+8. Test everything!
 
-8. Now when everything works well separate out the header and footer inside shared directory of flows.
+9. Now when everything works well separate out the header and footer inside shared directory of flows.
 
 WEB-INF
  ----views
  --------flows
  ------------register       
-     signup-personal.jsp         ../shared/flow-header.jsp
+ ----------------signup-personal.jsp         ../shared/flow-header.jsp & 
+ 											 ../shared/flow-footer.jsp	
  ------------shared
-     flow-header.jsp     flow-navbar.jsp
-     flow-footer.jsp             ../../shared/footer.jsp
-     flow-navbar.jsp            
+ ----------------flow-header.jsp 		     ./flow-navbar.jsp
+ ----------------flow-footer.jsp             ../../shared/footer.jsp
+ ----------------flow-navbar.jsp            
 
 
 
@@ -1802,9 +1803,17 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
 | 08 - Spring webflow with model and all navigation
 |--------------------------------------------------------------------
 
-1. Complete the signup-personal.jsp page by adding the spring form element as it requires modelAttribute we are going to use the var element of flow that will create a flow instance variable.
+1. Create all the views for the flow and add the view-state element inside the flow.
 
-  
+signup-personal.jsp (view-state) 
+signup-billing.jsp (view-state)
+signup-confirm.jsp (view-state)
+signup-success.jsp (end-state)
+
+2. Complete the signup-personal.jsp page by adding the spring form element as it requires modelAttribute we are going to use the var element of flow that will create a flow instance variable.
+
+REFERENCE : PART 05 - 01 & 02 videos for working with Spring Form
+
 <div class="row">
  
  <div class="col-md-6 col-md-offset-3">
@@ -1829,7 +1838,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
      <div class="col-md-8">
       <sf:input type="text" path="firstName" class="form-control"
        placeholder="First Name" />
-      <sf:errors path="firstName" cssClass="help-block" element="em"/> 
      </div>
     </div>
 
@@ -1839,7 +1847,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="lastName" class="form-control"
           placeholder="Last Name" />
-         <sf:errors path="lastName" cssClass="help-block" element="em"/> 
         </div>
        </div>
       
@@ -1848,7 +1855,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="email" class="form-control"
           placeholder="abc@zyx.com" />
-         <sf:errors path="email" cssClass="help-block" element="em"/>          
         </div>
        </div>
 
@@ -1857,7 +1863,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="contactNumber" class="form-control"
           placeholder="XXXXXXXXXX" maxlength="10" />
-         <sf:errors path="contactNumber" cssClass="help-block" element="em"/> 
         </div>
        </div>
        
@@ -1866,18 +1871,9 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="password" path="password" class="form-control"
           placeholder="Password" />
-         <sf:errors path="password" cssClass="help-block" element="em"/> 
         </div>
        </div>
        
-       <div class="form-group">
-        <label class="control-label col-md-4">Confirm Password</label>
-        <div class="col-md-8">
-         <sf:input type="password" path="confirmPassword" class="form-control"
-          placeholder="Re-type password" />
-         <sf:errors path="confirmPassword" cssClass="help-block" element="em"/>           
-        </div>
-       </div>
        <!-- radio button using bootstrap class of radio-inline -->
 	   <div class="form-group">
 	     <label class="control-label col-md-4">Select Role</label>
@@ -1893,7 +1889,7 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
 
        <div class="form-group">
         <div class="col-md-offset-4 col-md-8">
-				<!-- submit button inside the formv -->
+				<!-- submit button inside the form -->
 
         </div>
        </div>
@@ -1903,9 +1899,10 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
     </div>
    </div>
   </div>
-  
 
-2. Similarly we are going to add the signup-billing.jsp view along with the billing address model.
+ 
+  
+3. Similarly we are going to complete the signup-billing.jsp view along with the billing address model.
 
  <div class="row">
    
@@ -1923,6 +1920,7 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
        method="POST"      
        class="form-horizontal"
        id="billingForm"
+
       >
       
        
@@ -1931,7 +1929,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="addressLineOne" class="form-control"
           placeholder="Enter Address Line One" />
-         <sf:errors path="addressLineOne" cssClass="help-block" element="em"/> 
         </div>
        </div>
 
@@ -1940,7 +1937,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="addressLineTwo" class="form-control"
           placeholder="Enter Address Line Two" />
-         <sf:errors path="addressLineTwo" cssClass="help-block" element="em"/> 
         </div>
        </div>
 
@@ -1949,7 +1945,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="city" class="form-control"
           placeholder="Enter City Name" />
-         <sf:errors path="city" cssClass="help-block" element="em"/> 
         </div>
        </div>
        
@@ -1958,7 +1953,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="postalCode" class="form-control"
           placeholder="XXXXXX" />
-         <sf:errors path="postalCode" cssClass="help-block" element="em"/> 
         </div>
        </div>       
       
@@ -1967,7 +1961,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="state" class="form-control"
           placeholder="Enter State Name" />
-         <sf:errors path="state" cssClass="help-block" element="em"/> 
         </div>
        </div>
 
@@ -1976,7 +1969,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
         <div class="col-md-8">
          <sf:input type="text" path="country" class="form-control"
           placeholder="Enter Country Name" />
-         <sf:errors path="country" cssClass="help-block" element="em"/> 
         </div>
        </div>
        
@@ -2000,7 +1992,7 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
 
 
 
-3. Create the signup-confirm.jsp page where we would be able to see the details. It requires data from two different models.
+4. Complete the signup-confirm.jsp page where we would be able to see the details. It requires data from two different models.
 
   <div class="row">
  
@@ -2013,7 +2005,11 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
     </div>
     <div class="panel-body">
      <!-- code to display the personal details -->
-    </div>   
+    </div>
+    <div class="panel-footer">
+		<!-- anchor to move to the edit of personal details -->
+		
+    </div>              
    </div>
        
   </div>
@@ -2027,7 +2023,11 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
     </div>
     <div class="panel-body">
 		<!-- code to display the communication address -->
-    </div>   
+    </div>
+    <div class="panel-footer">
+		<!-- anchor to move to the edit of address -->
+
+    </div>       
    </div>  
   
   </div>
@@ -2048,7 +2048,7 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
  </div>
 
 
-4. The user will finally submit the details and it would be forwarded to a thanks page.
+5 The user will finally submit the details and it would be forwarded to success page.
 
  <div class="row">
  
@@ -2067,7 +2067,6 @@ TO BE CONTINUED - Part 06 - 08 - Spring webflow with model and navigation
  
  </div>
   
-
 
 TO BE CONTINUED - Part 06 - 09 - Spring Webflow Using Composite Model And Handler.
 
@@ -2091,15 +2090,26 @@ TO BE CONTINUED - Part 06 - 09 - Spring Webflow Using Composite Model And Handle
 
 1. Create a RegisterModel class which will hold both the user and billing address.
 
-2. Create a RegisterHandler class to provide the above model at the start of the flow along with both the flow instance variable fields.
+2. Create a RegisterHandler class to provide the above model at the start of the flow along with both the flow instance variable.
 
 3. On exit of each state store the flow instance inside the register model.
 
 4. Use this model to display the data entered by the user inside the signup-confirm page.
 
-5. Create the save method that would be called once when the user confirm the details.
+5. Create an action state that will be called once the user submit the details.
+
+6. Code the method to handle the user registration details.
 
 TO BE CONTINUED - Part 06 - 10 - Spring Webflow With Validation 
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2116,18 +2126,23 @@ TO BE CONTINUED - Part 06 - 10 - Spring Webflow With Validation
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 10 - Spring Webflow With Validation 
+| Part 06 - 10 - Spring Webflow With Validation - https://youtu.be/2x31awTOvRM
 |--------------------------------------------------------------------
 
-1. Add the following bean to ensure hibernate validation works with our spring form 
- <!-- For hibernate validator -->
+1. Add the hibernate validator annotation on the dto classes based on the validation you want to perform.
+
+2. Add the sf:errors element for the respective field in the spring form of personal and address views.
+
+REF: PART 05 - 04 - Validating Product Details using Hibernate Validator
+
+3. Add the validator attribute to our flow-builder-services element to use the validation service. The bean with id "validator" will provide validation service to spring form in views specified through spring webflow configuration   
+
  <bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
  
-2. The validator attribute will be added to the flow-builder-services  
+4. Test everything!
 
-3. Add the hibernate validator annotation and write custom validation for checking uniqueness of the email id.
+5. Write custom validation for checking uniqueness of the email id and also provide an additional field for confirm password. For this we would be creating an action state with an id of validate for personal view state.
 
-4. Make sure to have the spring form errors element targeting the proper field of the class.
 
 
 TO BE CONTINUED - Part 07 - Authentication & Authorization Using Spring Security
@@ -2169,7 +2184,8 @@ TO BE CONTINUED - Part 07 - Authentication & Authorization Using Spring Security
 |-----------------------------------------------------------------
 | Part 07 - Authentication & Authorization Using Spring Security
 |-----------------------------------------------------------------
-
+			Authentication - Who am I ? (username and password)
+			Authorization - Where can I go ? (has right authority)
 |--------------------------------------------------------------------
 | 01 - Spring Security Dependency and Configuration  
 |--------------------------------------------------------------------
@@ -2196,36 +2212,12 @@ TO BE CONTINUED - Part 07 - Authentication & Authorization Using Spring Security
 			<version>${spring.security.version}</version>
 		</dependency>
 
-2. Configure the web.xml file to filter the incoming request and applying the security configuration.
 
-	<!-- Configuration for spring security -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	
-	<!-- Load spring security config file -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			/WEB-INF/spring-security.xml
-		</param-value>
-	</context-param>
-	
-	<!-- Spring Security filter -->
-	<filter>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-	</filter>
-	
-	<filter-mapping>
-		<filter-name>springSecurityFilterChain</filter-name>
-		<url-pattern>/**</url-pattern>	
-	</filter-mapping>
-
-
-3. Create the spring-security.xml file in the WEB-INF directory and add the namespace to it.
+2. Configure the web.xml file to load the spring security configuration file.
 
 https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/
+
+3. Create the spring-security.xml file in the WEB-INF directory and add the namespace to it.
 
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 xmlns:beans="http://www.springframework.org/schema/beans"
@@ -2237,9 +2229,17 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 	...
 </beans:beans>
 
+
 4. To enable web security all we need to add is the http element.
 
-5. Provide the authentication manager and authentication provider which uses difference in built service to authenticate and authorize a user.
+/*  -----> /abc
+/** -----> /abc/pqr or /abc/pqr/mno or /abc/pqr/mno/xyz or ...
+
+Similarly,
+/abc/*	----> /abc/pqr or abc/mno or abc/xyz
+/abc/** ----> /abc/pqr or /abc/mno or /abc/mno/pqr or /abc/pqr/mno/ or ...
+
+5. Provide the authentication manager and authentication provider which uses difference in built services to authenticate and authorize a user.
 
 6. Understand the difference between hasRole and hasAuthority 
 
@@ -2283,20 +2283,13 @@ NOTE: we will get an error it is not able to find the dataSource bean.
 
 2. Add the context:component-scan of our backend application to the spring-security.xml file and assign a name to the dataSource bean created before.
 
-3. We are going to provide a custom login page at a request mapping of /login for this we will have to use the login-page attribute.
 
-4. Add a custom login page mapping inside the page controller. 
-
-5. Create the login.jsp page.
-
-6. Add a separate intercept-url pattern for displaying the login page.
-
-7. Add a separate http element to allow loading of static resources which does not require any form of security. 
-
-8. Also arrange the rest of the url 
+TO BE CONTINUED - Part 07 - 03 - Spring Security With Custom Login Page
 
 
-TO BE CONTINUED - Part 07 - 03 - Spring Security Login Page With jQuery Validation
+
+
+
 
 
 
@@ -2320,10 +2313,26 @@ TO BE CONTINUED - Part 07 - 03 - Spring Security Login Page With jQuery Validati
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 03 - Spring Security Login Page With jQuery Validation 
+| 03 - Spring Security With Custom Login Page 
 |--------------------------------------------------------------------
 
-1. We are going to design a simple html form with the following two input elements textboxes having the name parameter as 
+1. We are going to provide a custom login page at a request mapping of /login for this we will have to use the login-page attribute.
+
+2. Add a custom login page mapping inside the page controller. 
+
+3. Create the login.jsp page with simple navigation bar.
+
+	<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="${contextRoot}/home">Online Shopping</a>
+            </div>
+		</div>
+	</nav>	
+
+4. We are going to design a simple html form with the following two input elements textboxes having the names as 
 
 username (default name) to change it we have to use username-parameter
 password (default name) to change it we have to use password-parameter
@@ -2358,14 +2367,17 @@ password (default name) to change it we have to use password-parameter
          </div>
          <div class="form-group">
           <div class="col-md-offset-4 col-md-8">
-           <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
            <input type="submit" value="Login" class="btn btn-primary"/>
           </div>
          </div>
         </form>
        
        </div>
-      
+ 		<div class="panel-footer">
+       	<div class="text-right">
+       		New User - <a href="${contextRoot}/register">Register Here</a>
+       	</div>
+       </div>      
       </div> 
     
      </div>
@@ -2374,10 +2386,68 @@ password (default name) to change it we have to use password-parameter
    
    </div>
 
+5. Add a separate intercept-url pattern for displaying the login page.
 
-2. To validate the form we are going to use client side validation by using jQuery validator.
+6. Add a separate http element to allow loading of static resources which does not require any form of security.
 
-3. After clicking on the submit we get an error related to CSRF. By default csrf is enabled in spring security and it provides us with protection from CSRF attack right out of the box
+7. Add jQuery validation for the login form elements.
+
+TEST EVERYTHING!
+
+
+
+TO BE CONTINUED - Part 07 - 04 - Handling CSRF In Spring Security  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 04 - Handling CSRF Using Spring Security 
+|--------------------------------------------------------------------
+
+1. After clicking on the submit we get an error related to CSRF. By default csrf is enabled in spring security and it provides us with protection from CSRF attack right out of the box.
 
 More can be read at: 
 https://www.incapsula.com/web-application-security/csrf-cross-site-request-forgery.html
@@ -2386,51 +2456,20 @@ To solve this we either
 a. disable the csrf protection (not recommended)
 b. or provide an hidden field that will keep the csrf token that only server recognize when the form is submitted.
 
-4. Handle invalid credentials inside the /login request handler. For this we will use the @RequestParam page.
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+2. To Handle invalid credentials inside the /login request handler. For this we will use the @RequestParam annotation on the login mapping.
 
 
+3. For ajax request we need to send csrf token along with the request for that we will save the token inside the meta tag.
 
-TO BE CONTINUED - Part 07 - 04 - Custom Access Denied Page 
+	<meta name="_csrf" content="${_csrf.token}">
+	<meta name="_csrf_header" content="${_csrf.headerName}">
 
-
-
-
-
-
+4. Using the token stored we will construct the header for ajax request.
 
 
-
-
-
-
-
-
-|-----------------------------------------------------------------
-| Complete Project Step By Step with 
-| Spring, Hibernate, Maven, Angular JS and Bootstrap
-| - Khozema Nullwala
-|-----------------------------------------------------------------
-
-|-----------------------------------------------------------------
-| Part 07 - Authentication & Authorization Using Spring Security
-|-----------------------------------------------------------------
-
-|--------------------------------------------------------------------
-| 04 - Custom Access Denied Page  
-|--------------------------------------------------------------------
-
-
-
-1. Add the access-denied-handler element with the error-page attribute
-
-2. Create the request mapping and handler method to display the view.
-
-
-
-
-TO BE CONTINUED - Part 07 - 05 - Spring Security Password Encryption 
-
-
+TO BE CONTINUED - Part 07 - 05 - Role Based Access Control 
 
 
 
@@ -2456,23 +2495,63 @@ TO BE CONTINUED - Part 07 - 05 - Spring Security Password Encryption
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 05 - Spring Security Password Encryption  
+| 05 - Role Based Access Control   
 |--------------------------------------------------------------------
 
-1. Add a bean element to the spring-security.xml file with the fully qualified name as given below:
+1. Specify the roles for accessing the specific part of the application.
+
+2. Add the access-denied-handler element with the error-page attribute
+
+3. Create the request mapping and handler method to display the view.
+
+
+TO BE CONTINUED - Part 07 - 06 - Spring Security Password Encryption 
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 06 - Spring Security Password Encryption  
+|--------------------------------------------------------------------
+
+1. Modify the database table to incorporate hashed password using bcrypt mechanism. 
+
+2. Add a bean element to the spring-security.xml file with the fully qualified name as given below:
 
 <beans:bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
+3. Autowired the bean inside the RegisterHandler that we created for registering a user and call the encode method on user entered password. 
 
-2. Autowired the bean inside the RegisterHandler that we created for registering a user and call the encode method on user entered password. 
+4. Since we are using hashed password now we have to decode the password that was encoded for this we will use the pasword-encoder element inside the authentication provider.
 
-3. Since we are using hashed password now we have to decode the password that was encoded for this we will use the pasword-encoder element inside the authentication provider.
-
-4. Test everything!
-
+5. Test everything!
 
 
-TO BE CONTINUED - Part 07 - 06 - Hiding Menu and Displaying Cart 
+
+TO BE CONTINUED - Part 07 - 07 - Global Controller To Fetch User Model
+
+
+
+
+
+
+
+
 
 
 
@@ -2492,20 +2571,83 @@ TO BE CONTINUED - Part 07 - 06 - Hiding Menu and Displaying Cart
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 06 - Hiding Menu and Displaying Cart  
+| 07 - Global Controller To Fetch User Model 
 |--------------------------------------------------------------------
+
+1. Create the menus to display the details.
+
+2. Create a UserModel in which we are going to store fields that we require once the user logs in.
+
+3. Create a GlobalController and a method that will return the UserModel with the details that is required for display.
+
+
+
+TO BE CONTINUED - Part 07 - 08 - Displaying Menus and Buttons based on Role
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| Part 07 - 08 - Displaying Menus and Buttons based on Role
+|--------------------------------------------------------------------
+
 
 1. Open the navbar.jsp and add security tag library to it.
 
 2. Use the authorize element along with its access attribute to provide access to a particular menu.
 
-3. Since we require cart to be available on the navbar.jsp it is a good idea to provide cart model through a globalcontroller which can be created using @ControllerAdvice annotation.
-
-4. Add the cart to the session and access from it everytime rather than querying the database.
+3. We will store the role value from the userModel inside window object of javascript and access it inside myapp.js to display the appropriate buttons.
 
 
 
-TO BE CONTINUED - Part 07 - 07 - Handling the logout
+TO BE CONTINUED - Part 07 - 09 - Spring Security Logout Handling
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2525,22 +2667,159 @@ TO BE CONTINUED - Part 07 - 07 - Handling the logout
 |-----------------------------------------------------------------
 
 |--------------------------------------------------------------------
-| 07 - Handling the logout 
+| Part 07 - 09 - Spring Security Logout Handling
 |--------------------------------------------------------------------
 
-1. 
+1. Since CSRF protection is enabled for our application we cannot use the logout filter that we have added inside the spring security file as per the documentation.
+
+2. We are going to add our own custom logout handler by adding a request mapping and redirecting it again to the login page.
+
+3. Display the logout success message to the user.
 
 
 
---------------------------------------------------------------------
-Part 08 - Working with Cart Module for User
---------------------------------------------------------------------
+TO BE CONTINUED - Part 07 - 10 - Fixing Bug And Making DataTable Responsive
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 07 - Authentication & Authorization Using Spring Security
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| Part 07 - 10 - Fixing Bug For DataTable and Making it Responsive
+|--------------------------------------------------------------------
+
+1. Wrap the datatable inside a div with class of container-fluid.
+
+2. Create another div with class of table-responsive.
+
+3. Code the table-responsive class with the overflow-x property
+
+
+				TO BE CONTINUED - Part 08 - Cart Module for User
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|-----------------------------------------------------------------
+| Complete Project Step By Step with 
+| Spring, Hibernate, Maven, Angular JS and Bootstrap
+| - Khozema Nullwala
+|-----------------------------------------------------------------
+
+|-----------------------------------------------------------------
+| Part 08 - Cart Module for User
+|-----------------------------------------------------------------
+
+|--------------------------------------------------------------------
+| 01 - Understanding the Business Logic for Simple Cart.
+|--------------------------------------------------------------------
+
+
+
+TO BE CONTINUED - Part 08 - 02 - Cart DTO, DAO, DAOImpl And Test Case
+
+TO BE CONTINUED - Part 08 - 03 - Creating Cart Service for Cart Logic
+
+TO BE CONTINUED - Part 08 - 04 - Creating the Cart View
+
+1. Create a file in the views directory with the name of cart.jsp. 
+
+2. Add the html content copied from bootsnipp.com which consist of various html template code for displaying the cart table.
+
+https://bootsnipp.com/snippets/featured/responsive-shopping-cart
+
+3. Copy the css content as well and update the icons to use glyphicon.
+
+4. Create a CartController that will handle the request of user related to cart.
+
+5. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 --------------------------------------------------------------------
 Part 09 - Working with Checkout Module using Webflow
 --------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -2640,3 +2919,4 @@ $('#myform :checkbox').change(function() {
         // the checkbox is now no longer checked
     }
 });
+

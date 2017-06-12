@@ -14,6 +14,9 @@ $(function() {
 	case 'Product Management':
 		$('#manageProduct').addClass('active');
 		break;
+	case 'Shopping Cart':
+		$('#userModel').addClass('active');
+		break;		
 	default:
 		if (menu == "Home")
 			break;
@@ -380,9 +383,20 @@ $(function() {
 	    });
 	});	
 	*/
+
+	/* handle refresh cart*/
 	
-	
-	
-	
-	
+	$('button[name="refreshCart"]').click(function(){
+		var cartLineId = $(this).attr('value');
+		var countField = $('#count_' + cartLineId);
+		var originalCount = countField.attr('value');
+		if(countField.val() < 1 || countField.val() > 6) {
+			countField.val(originalCount);
+		}
+		else {
+			window.location.href = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + countField.val();
+		}
+		
+	});
+			
 });
