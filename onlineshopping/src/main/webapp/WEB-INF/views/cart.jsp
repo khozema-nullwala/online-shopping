@@ -1,43 +1,14 @@
+<c:set var="availableCount" value="${userModel.cart.cartLines}" />
 <div class="container">
 
 
-	<c:if test="${not empty updated}">
+	<c:if test="${not empty message}">
 		
 		<div class="alert alert-info">
-			<h3 class="text-center">${udpated}</h3>
+			<h3 class="text-center">${message}</h3>
 		</div>		
 	
 	</c:if>
-	<c:if test="${not empty maxed}">
-		
-		<div class="alert alert-warning">
-			<h3 class="text-center">${maxed}</h3>
-		</div>		
-	
-	</c:if>
-	<c:if test="${not empty added}">
-		
-		<div class="alert alert-success">
-			<h3 class="text-center">${added}</h3>
-		</div>		
-	
-	</c:if>	
-
-	<c:if test="${not empty deleted}">
-		
-		<div class="alert alert-info">
-			<h3 class="text-center">${deleted}</h3>
-		</div>		
-	
-	</c:if>	
-
-	<c:if test="${not empty validated}">
-		
-		<div class="alert alert-info">
-			<h3 class="text-center">${validated}</h3>
-		</div>		
-	
-	</c:if>	
 	
 	<c:choose>
 		<c:when test="${not empty cartLines}">
@@ -53,6 +24,10 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${cartLines}" var="cartLine">
+					<c:if test="${cartLine.available == false}">
+						<c:set var="availableCount" value="${availableCount - 1}"/>
+					</c:if>
+					
 					<tr>
 						<td data-th="Product">
 							<div class="row">
@@ -61,7 +36,7 @@
 								<div class="col-sm-10">
 									<h4 class="nomargin">${cartLine.product.name} 
 										<c:if test="${cartLine.available == false}">
-											<strong>(Not Available)</strong> 
+											<strong style="color:red">(Not Available)</strong> 
 										</c:if>
 									</h4>
 									<p>Brand : ${cartLine.product.brand}</p>
@@ -69,9 +44,9 @@
 								</div>
 							</div>
 						</td>
-						<td data-th="Price"> &#8377; ${cartLine.product.unitPrice} /-</td>
+						<td data-th="Price"> &#8377; ${cartLine.buyingPrice} /-</td>
 						<td data-th="Quantity">
-							<input type="number" id="count_${cartLine.id}" class="form-control text-center" value="${cartLine.productCount}" min="1" max="5">
+							<input type="number" id="count_${cartLine.id}" class="form-control text-center" value="${cartLine.productCount}" min="1" max="3">
 						</td>
 						<td data-th="Subtotal" class="text-center">&#8377; ${cartLine.total} /-</td>
 						<td class="actions" data-th="">
@@ -90,8 +65,16 @@
 					<tr>
 						<td><a href="${contextRoot}/show/all/products" class="btn btn-warning"><span class="glyphicon glyphicon-chevron-left"></span> Continue Shopping</a></td>
 						<td colspan="2" class="hidden-xs"></td>
-						<td class="hidden-xs text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}</strong></td>
-						<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+						<td class="hidden-xs text-center"><strong>Total &#8377; ${userModel.cart.grandTotal}/-</strong></td>
+						
+						<c:choose>
+							<c:when test="${availableCount != 0}">
+								<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+							</c:when>							
+							<c:otherwise>
+								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+							</c:otherwise>
+						</c:choose>						
 					</tr>
 				</tfoot>
 			</table>

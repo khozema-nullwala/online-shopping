@@ -8,10 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "cart_line")
 public class CartLine implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -22,6 +29,14 @@ public class CartLine implements Serializable {
 	@Column(name = "product_count")
 	private int productCount;
 	private double total;
+	@Column(name = "buying_price")
+	private double buyingPrice;
+	public double getBuyingPrice() {
+		return buyingPrice;
+	}
+	public void setBuyingPrice(double buyingPrice) {
+		this.buyingPrice = buyingPrice;
+	}
 	@Column(name = "is_available")
 	private boolean available = true;
 	

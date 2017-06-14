@@ -390,13 +390,23 @@ $(function() {
 		var cartLineId = $(this).attr('value');
 		var countField = $('#count_' + cartLineId);
 		var originalCount = countField.attr('value');
-		if(countField.val() < 1 || countField.val() > 6) {
-			countField.val(originalCount);
+		// do the checking only the count has changed
+		if(countField.val() !== originalCount) {	
+			// check if the quantity is within the specified range
+			if(countField.val() < 1 || countField.val() > 3) {
+				// set the field back to the original field
+				countField.val(originalCount);
+				bootbox.alert({
+					size: 'medium',
+			    	title: 'Error',
+			    	message: 'Cannot add more than 3 products!'
+				});
+			}
+			else {
+				// use the window.location.href property to send the request to the server
+				var updateUrl = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + countField.val();
+				window.location.href = updateUrl;
+			}
 		}
-		else {
-			window.location.href = window.contextRoot + '/cart/' + cartLineId + '/update?count=' + countField.val();
-		}
-		
-	});
-			
+	});			
 });

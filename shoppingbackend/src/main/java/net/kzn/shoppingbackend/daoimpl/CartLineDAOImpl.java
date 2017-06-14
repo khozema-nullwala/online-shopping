@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import net.kzn.shoppingbackend.dao.CartLineDAO;
+import net.kzn.shoppingbackend.dto.Cart;
 import net.kzn.shoppingbackend.dto.CartLine;
 
 @Repository("cartLineDAO")
@@ -68,19 +69,6 @@ public class CartLineDAOImpl implements CartLineDAO {
 		}		
 	}
 
-	@Override
-	public boolean removeAll(int cartId) {
-		String query = "DELETE FROM CartLine WHERE cartId = :cartId";
-		try {			
-			sessionFactory.getCurrentSession()
-							.createQuery(query, CartLine.class)
-							.setParameter("cartId", cartId)
-							.executeUpdate();
-			return true;
-		}catch(Exception ex) {
-			return false;
-		}		
-	}
 
 	@Override
 	public List<CartLine> list(int cartId) {
@@ -96,4 +84,26 @@ public class CartLineDAOImpl implements CartLineDAO {
 		return sessionFactory.getCurrentSession().get(CartLine.class, Integer.valueOf(id));
 	}
 
+	@Override
+	public boolean updateCart(Cart cart) {
+		try {			
+			sessionFactory.getCurrentSession().update(cart);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
+		}
+	}
+
+	@Override
+	public List<CartLine> listAvailable(int cartId) {
+		String query = "FROM CartLine WHERE cartId = :cartId AND available = :available";
+		return sessionFactory.getCurrentSession()
+								.createQuery(query, CartLine.class)
+									.setParameter("cartId", cartId)
+									.setParameter("available", true)
+										.getResultList();
+	}
+	
+	
 }

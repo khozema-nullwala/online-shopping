@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+                          http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+	
+	<var name="address" class="net.kzn.shoppingbackend.dto.Address"/>
+	
+	<on-start>
+		<evaluate expression="checkoutHandler.init()" result="flowScope.checkoutModel"/>
+	</on-start>
+
+	<!-- view the address selection page-->
+	<view-state id="shipping" view="flows/cart/checkout/shipping" model="flowScope.checkoutModel">	
+		<transition on="addAddress" to="addAddress" />
+		<transition on="paymentMode" to="paymentMode" />
+	</view-state>
+	
+	<!-- view address page-->
+	<view-state id="addAddress" view="flows/cart/checkout/shipping" model="address">		
+		<transition on="submit" to="saveAddress" />			
+	</view-state>
+	
+	<!-- action state to save the address -->
+	<action-state id="saveAddress">		
+		<evaluate expression="checkoutHandler.saveAddress(flowScope.checkoutModel, address)" />
+		<transition on="success" to="shipping" />
+	</action-state>
+
+	<!-- view the payment mode page-->
+	<view-state id="payment" view="flows/cart/checkout/paymentMode" model="flowScope.checkoutModel">		
+		<transition on="pay" to="saveOrder" />	
+	</view-state>
+
+	<!-- action state to save the address -->
+	<action-state id="saveOrder">		
+		<evaluate expression="checkoutHandler.saveOrder(flowScope.checkoutModel)" />
+		<transition on="success" to="receipt" />
+	</action-state>
+	
+	<!-- view the order receipt page-->
+	<view-state id="receipt" view="flows/cart/checkout/receipt" model="flowScope.checkoutModel">		
+		<transition on="shopping" to="shopping" />
+	</view-state>
+		
+	<!-- end state -->
+	<end-state  id="shopping" view="externalRedirect:contextRelative:/show/all/products" />
+	<end-state id="home" view="externalRedirect:contextRelative:/" />
+
+	<!-- global transition -->
+	<global-transitions>
+		<transition on="home" to="home" validate="false" />
+	</global-transitions>
+	
+</flow>

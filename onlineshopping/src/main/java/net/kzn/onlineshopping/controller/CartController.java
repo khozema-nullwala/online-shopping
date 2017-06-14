@@ -20,33 +20,38 @@ public class CartController {
 	@Autowired
 	private CartService cartService;
 	@RequestMapping("/show")
-	public ModelAndView showCart(@RequestParam(name = "updated", required = false) String updated,
-			@RequestParam(name = "maxed", required = false) String maxed,
-			@RequestParam(name = "added", required = false) String added,
-			@RequestParam(name = "deleted", required = false) String deleted,
-			@RequestParam(name = "validated", required = false) String validated
-			) {
+	public ModelAndView showCart(@RequestParam(name = "result", required = false) String result) {
 		
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Shopping Cart");
 		mv.addObject("userClickShowCart", true);
 		mv.addObject("cartLines", cartService.getCartLines());
-		if(updated!=null) {
-			mv.addObject("updated", "The cart has been successfully updated!");
+		
+		if(result!=null) {
+			switch(result) {
+				case "added":
+					mv.addObject("message", "Product has been successfully added inside cart!");					
+					cartService.validateCartLine();
+					break;
+				case "updated":
+					mv.addObject("message", "Cart has been updated successfully!");					
+					cartService.validateCartLine();
+					break;
+				case "modified":
+					mv.addObject("message", "One or more items inside cart has been modified!");
+					break;
+				case "maximum":
+					mv.addObject("message", "Maximum limit for the item has been reached!");
+					break;
+				case "deleted":
+					mv.addObject("message", "CartLine has been successfully removed!");
+					break;
+
+			}
 		}
-		if(maxed!=null) {
-			mv.addObject("maxed", "The product has reached its maximum limit!");
+		else {
+			cartService.validateCartLine();
 		}
-		if(added!=null) {
-			mv.addObject("added", "The product has been successfully added inside the cart!");
-		}
-		if(deleted!=null) {
-			mv.addObject("deleted", "The product has been successfully deleted from the cart!");
-		}
-		if(validated!=null) {
-			mv.addObject("validated", "One or more products inside the cart has been changed!");
-		}
-							
 		
 		return mv;
 		
@@ -55,41 +60,34 @@ public class CartController {
 
 	@RequestMapping("/{cartLineId}/update")
 	public String udpateCartLine(@PathVariable int cartLineId, @RequestParam int count) {
-		
-		logger.info(String.valueOf(count));
-		
-		String response = cartService.manageCartLine(cartLineId, count);
-		
+		String response = cartService.manageCartLine(cartLineId, count);		
 		return "redirect:/cart/show?"+response;		
 	}
-
 	
 	@RequestMapping("/add/{productId}/product")
 	public String addCartLine(@PathVariable int productId) {
-	
 		String response = cartService.addCartLine(productId);
-		
 		return "redirect:/cart/show?"+response;
 	}
 	
 	@RequestMapping("/{cartLineId}/remove")
 	public String removeCartLine(@PathVariable int cartLineId) {
-	
 		String response = cartService.removeCartLine(cartLineId);
-		
 		return "redirect:/cart/show?"+response;
 	}
-		
+	
+	/* after validating it redirect to checkout
+	 * if result received is success proceed to checkout 
+	 * else display the message to the user about the changes in cart page
+	 * */	
 	@RequestMapping("/validate")
 	public String validateCart() {	
 		String response = cartService.validateCartLine();
-		if(response.equals("validated")) {
+		if(!response.equals("result=success")) {
 			return "redirect:/cart/show?"+response;
 		}
 		else {
 			return "redirect:/cart/checkout";
 		}
-	}
-			
-	
+	}	
 }

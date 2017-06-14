@@ -1,6 +1,6 @@
 package net.kzn.shoppingbackend.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -11,7 +11,6 @@ import net.kzn.shoppingbackend.dao.ProductDAO;
 import net.kzn.shoppingbackend.dao.UserDAO;
 import net.kzn.shoppingbackend.dto.Cart;
 import net.kzn.shoppingbackend.dto.CartLine;
-import net.kzn.shoppingbackend.dto.Product;
 import net.kzn.shoppingbackend.dto.User;
 
 public class CartLineTestCase {
@@ -87,8 +86,8 @@ public class CartLineTestCase {
 		
 		cart.setGrandTotal(cart.getGrandTotal() + (cartLine.getTotal() - oldTotal));
 		
-		assertEquals("Failed to update the CartLine!",true, cartLineDAO.update(cartLine));
-		assertEquals("Failed to update the cart!",true, userDAO.updateCart(cart));		
+		assertEquals("Failed to update the CartLine!",true, cartLineDAO.update(cartLine));	
+
 		
 	}
 	
