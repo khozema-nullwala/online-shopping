@@ -72,8 +72,15 @@
 			</div>
 		</div>
 	</c:if>
-    
-    
+         
+   	<c:if test="${not empty logout}">
+		<div class="row">
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<div class="alert alert-success">${logout}</div>
+			</div>
+		</div>
+	</c:if>
+       
     <div class="row">
      
      <div class="col-md-offset-3 col-md-6">

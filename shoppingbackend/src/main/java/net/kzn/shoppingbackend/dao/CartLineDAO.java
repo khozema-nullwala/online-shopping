@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.kzn.shoppingbackend.dto.Cart;
 import net.kzn.shoppingbackend.dto.CartLine;
+import net.kzn.shoppingbackend.dto.OrderDetail;
 
 public interface CartLineDAO {
 
@@ -21,4 +22,9 @@ public interface CartLineDAO {
 	
 	// list of available cartLine
 	public List<CartLine> listAvailable(int cartId);
+	
+	// adding order details
+	boolean addOrderDetail(OrderDetail orderDetail);
+
+	
 }

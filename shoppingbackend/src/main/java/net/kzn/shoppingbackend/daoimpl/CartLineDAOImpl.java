@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import net.kzn.shoppingbackend.dao.CartLineDAO;
 import net.kzn.shoppingbackend.dto.Cart;
 import net.kzn.shoppingbackend.dto.CartLine;
+import net.kzn.shoppingbackend.dto.OrderDetail;
 
 @Repository("cartLineDAO")
 @Transactional
@@ -104,6 +105,16 @@ public class CartLineDAOImpl implements CartLineDAO {
 									.setParameter("available", true)
 										.getResultList();
 	}
-	
-	
+
+	@Override
+	public boolean addOrderDetail(OrderDetail orderDetail) {
+		try {			
+			sessionFactory.getCurrentSession().persist(orderDetail);			
+			return true;
+		}
+		catch(Exception ex) {
+			return false;
+		}
+	}
+		
 }

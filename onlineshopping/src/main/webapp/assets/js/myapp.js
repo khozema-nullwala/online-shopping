@@ -1,4 +1,13 @@
 $(function() {
+	
+	// for adding a loader
+	$(window).load(function(){
+		setTimeout(function() {
+			$(".se-pre-con").fadeOut("slow");
+		}, 500);			
+	});	
+	
+	
 	// solving the active menu problem
 	switch (menu) {
 
@@ -399,7 +408,7 @@ $(function() {
 				bootbox.alert({
 					size: 'medium',
 			    	title: 'Error',
-			    	message: 'Cannot add more than 3 products!'
+			    	message: 'Product Count should be minimum 1 and maximum 3!'
 				});
 			}
 			else {

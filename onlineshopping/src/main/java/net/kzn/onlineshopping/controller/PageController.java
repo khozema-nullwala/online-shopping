@@ -1,5 +1,8 @@
 package net.kzn.onlineshopping.controller;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -147,11 +150,15 @@ public class PageController {
 	
 	
 	@RequestMapping(value="/login")
-	public ModelAndView login(@RequestParam(name="error", required = false)	String error) {
+	public ModelAndView login(@RequestParam(name="error", required = false)	String error,
+			@RequestParam(name="logout", required = false) String logout) {
 		ModelAndView mv= new ModelAndView("login");
 		mv.addObject("title", "Login");
 		if(error!=null) {
 			mv.addObject("message", "Username and Password is invalid!");
+		}
+		if(logout!=null) {
+			mv.addObject("logout", "You have logged out successfully!");
 		}
 		return mv;
 	}
@@ -165,7 +172,7 @@ public class PageController {
 	        new SecurityContextLogoutHandler().logout(request, response, auth);
 	    }
 		
-		return "redirect:/home?logout";
+		return "redirect:/login?logout";
 	}	
 	
 	

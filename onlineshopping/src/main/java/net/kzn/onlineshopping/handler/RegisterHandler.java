@@ -64,7 +64,7 @@ public class RegisterHandler {
   userDAO.add(user);
   // save the billing address
   Address billing = registerModel.getBilling();
-  billing.setUser(user);
+  billing.setUserId(user.getId());
   billing.setBilling(true);  
   userDAO.addAddress(billing);
   return transitionValue ;

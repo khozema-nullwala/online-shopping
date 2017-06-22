@@ -15,7 +15,6 @@ import net.kzn.shoppingbackend.dto.User;
 
 @ControllerAdvice
 public class GlobalController {
-
 	
 	
 	@Autowired
@@ -33,24 +32,28 @@ public class GlobalController {
 		if(session.getAttribute("userModel")==null) {
 			// get the authentication object
 			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-			// get the user from the database
-			user = userDAO.getByEmail(authentication.getName());
 			
-			if(user!=null) {
-				// create a new model
-				userModel = new UserModel();
-				// set the name and the id
-				userModel.setId(user.getId());
-				userModel.setFullName(user.getFirstName() + " " + user.getLastName());
-				userModel.setRole(user.getRole());
+			
+			if(!authentication.getPrincipal().equals("anonymousUser")){
+				// get the user from the database
+				user = userDAO.getByEmail(authentication.getName());
 				
-				if(user.getRole().equals("USER")) {
-					userModel.setCart(user.getCart());					
-				}				
-
-				session.setAttribute("userModel", userModel);
-				return userModel;
-			}			
+				if(user!=null) {
+					// create a new model
+					userModel = new UserModel();
+					// set the name and the id
+					userModel.setId(user.getId());
+					userModel.setFullName(user.getFirstName() + " " + user.getLastName());
+					userModel.setRole(user.getRole());
+					
+					if(user.getRole().equals("USER")) {
+						userModel.setCart(user.getCart());					
+					}				
+	
+					session.setAttribute("userModel", userModel);
+					return userModel;
+				}			
+			}
 		}
 		
 		return (UserModel) session.getAttribute("userModel");		

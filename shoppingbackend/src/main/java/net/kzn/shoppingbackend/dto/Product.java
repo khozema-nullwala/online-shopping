@@ -2,6 +2,7 @@ package net.kzn.shoppingbackend.dto;
 
 
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.stereotype.Component;
@@ -20,8 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Component
 @Entity
-public class Product {
+public class Product implements Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	// private fields
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +34,6 @@ public class Product {
 	@NotBlank(message = "Please enter the brand name!")
 	private String brand;
 	@NotBlank(message = "Please enter the description!")
-	@JsonIgnore
 	private String description;
 	@Column(name = "unit_price")
 	@Min(value = 1, message="Please select at least one value!")

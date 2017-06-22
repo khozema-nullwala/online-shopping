@@ -65,14 +65,14 @@
 			</c:choose>
 			
 			
-			<security:authorize access="hasAuthority('USER')">	
+			<security:authorize access="isAnonymous() or hasAuthority('USER')">	
 
 			<c:choose>
 				
 				<c:when test="${product.quantity < 1}">
 				
-				<a href="javascript:void(0)" class="btn btn-success disabled"><strike>
-				<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</strike></a>
+					<a href="javascript:void(0)" class="btn btn-success disabled"><strike>
+					<span class="glyphicon glyphicon-shopping-cart"></span> Add to Cart</strike></a>
 					
 				</c:when>
 				<c:otherwise>				
@@ -96,8 +96,8 @@
 						
 			
 
-			<a href="${contextRoot}/show/all/products" class="btn btn-primary">
-				Back</a>
+			<a href="${contextRoot}/show/all/products" class="btn btn-warning">
+				Continue Shopping</a>
 					
 		</div>
 

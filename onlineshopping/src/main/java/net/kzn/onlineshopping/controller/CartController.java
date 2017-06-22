@@ -25,7 +25,6 @@ public class CartController {
 		ModelAndView mv = new ModelAndView("page");
 		mv.addObject("title", "Shopping Cart");
 		mv.addObject("userClickShowCart", true);
-		mv.addObject("cartLines", cartService.getCartLines());
 		
 		if(result!=null) {
 			switch(result) {
@@ -50,9 +49,13 @@ public class CartController {
 			}
 		}
 		else {
-			cartService.validateCartLine();
+			String response = cartService.validateCartLine();
+			if(response.equals("result=modified")) {
+				mv.addObject("message", "One or more items inside cart has been modified!");
+			}
 		}
-		
+
+		mv.addObject("cartLines", cartService.getCartLines());
 		return mv;
 		
 	}

@@ -1,12 +1,13 @@
 package net.kzn.onlineshopping.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import net.kzn.shoppingbackend.dto.Address;
+import net.kzn.shoppingbackend.dto.Cart;
 import net.kzn.shoppingbackend.dto.CartLine;
-import net.kzn.shoppingbackend.dto.OrderItem;
+import net.kzn.shoppingbackend.dto.OrderDetail;
+import net.kzn.shoppingbackend.dto.User;
 
 public class CheckoutModel implements Serializable {
 
@@ -14,49 +15,36 @@ public class CheckoutModel implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
-	private List<Address> addresses;
-	private Address billing;
-	private int addressId;
-	
+
+	private User user;
+	private Address shipping;
+	private Cart cart;
 	private List<CartLine> cartLines;
-	private double orderTotal;
-	
-	private List<OrderItem> orderItems = new ArrayList<>();
-	
-	
-	public List<OrderItem> getOrderItems() {
-		return orderItems;
+	private OrderDetail orderDetail;
+	private double checkoutTotal;
+
+	public OrderDetail getOrderDetail() {
+		return orderDetail;
 	}
 
-	public void setOrderItems(List<OrderItem> orderItems) {
-		this.orderItems = orderItems;
+	public void setOrderDetail(OrderDetail orderDetail) {
+		this.orderDetail = orderDetail;
 	}
 
-	public Address getBilling() {
-		return billing;
+	public Cart getCart() {
+		return cart;
 	}
 
-	public void setBilling(Address billing) {
-		this.billing = billing;
+	public void setCart(Cart cart) {
+		this.cart = cart;
 	}
 
-	private String paymentMode;
-
-	public List<Address> getAddresses() {
-		return addresses;
+	public double getCheckoutTotal() {
+		return checkoutTotal;
 	}
 
-	public void setAddresses(List<Address> addresses) {
-		this.addresses = addresses;
-	}
-
-	public int getAddressId() {
-		return addressId;
-	}
-
-	public void setAddressId(int addressId) {
-		this.addressId = addressId;
+	public void setCheckoutTotal(double checkoutTotal) {
+		this.checkoutTotal = checkoutTotal;
 	}
 
 	public List<CartLine> getCartLines() {
@@ -67,21 +55,21 @@ public class CheckoutModel implements Serializable {
 		this.cartLines = cartLines;
 	}
 
-	public double getOrderTotal() {
-		return orderTotal;
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setOrderTotal(double orderTotal) {
-		this.orderTotal = orderTotal;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public String getPaymentMode() {
-		return paymentMode;
+	public Address getShipping() {
+		return shipping;
 	}
 
-	public void setPaymentMode(String paymentMode) {
-		this.paymentMode = paymentMode;
+	public void setShipping(Address shipping) {
+		this.shipping = shipping;
 	}
-
 	
 }

@@ -72,7 +72,7 @@
 								<td><a href="${contextRoot}/cart/validate" class="btn btn-success btn-block">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
 							</c:when>							
 							<c:otherwise>
-								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled">Checkout <span class="glyphicon glyphicon-chevron-right"></span></a></td>
+								<td><a href="javascript:void(0)" class="btn btn-success btn-block disabled"><strike>Checkout <span class="glyphicon glyphicon-chevron-right"></span></strike></a></td>
 							</c:otherwise>
 						</c:choose>						
 					</tr>
