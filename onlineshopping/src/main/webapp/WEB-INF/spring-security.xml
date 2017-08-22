@@ -16,12 +16,14 @@
 	<http pattern="/resources/**" security="none"/>
 
 	<http>
+		<!-- only admin access -->
 		<intercept-url pattern="/manage/**" access="hasAuthority('ADMIN')" />
-		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />		
+		<!-- only user access (who is registered) -->
+		<intercept-url pattern="/cart/**" access="hasAuthority('USER')" />
+		<!-- rest of the world -->			
 		<intercept-url pattern="/**" access="permitAll" />
 		<form-login login-page="/login" />
 		<access-denied-handler error-page="/access-denied"/>
-		<logout />
 	</http>
 	
 	<authentication-manager>

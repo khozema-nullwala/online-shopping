@@ -44,11 +44,11 @@ public class CartService {
 		Product product = cartLine.getProduct();
 		
 		// check if that much quantity is available or not
-		// update the cart line
-		if(product.getQuantity() <= count) {
-			count = product.getQuantity();			
+		if(product.getQuantity() < count) {
+			return "result=unavailable";		
 		}	
 		
+		// update the cart line
 		cartLine.setProductCount(count);
 		cartLine.setBuyingPrice(product.getUnitPrice());
 		cartLine.setTotal(product.getUnitPrice() * count);
@@ -92,7 +92,7 @@ public class CartService {
 		} 
 		else {
 			// check if the cartLine has been already reached to maximum count
-			if(cartLine.getProductCount() < 4) {
+			if(cartLine.getProductCount() < 3) {
 				// call the manageCartLine method to increase the count
 				response = this.manageCartLine(cartLine.getId(), cartLine.getProductCount() + 1);				
 			}			
@@ -138,17 +138,15 @@ public class CartService {
 			changed = false;
 			// check if the product is active or not
 			// if it is not active make the availability of cartLine as false
-			if(!product.isActive() && cartLine.isAvailable()) {
+			if((!product.isActive() && product.getQuantity() == 0) && cartLine.isAvailable()) {
 				cartLine.setAvailable(false);
 				changed = true;
 			}			
 			// check if the cartLine is not available
 			// check whether the product is active and has at least one quantity available
-			if(product.isActive() && !(cartLine.isAvailable())) {
-				if(product.getQuantity() > 0) {
+			if((product.isActive() && product.getQuantity() > 0) && !(cartLine.isAvailable())) {
 					cartLine.setAvailable(true);
 					changed = true;
-				}
 			}
 			
 			// check if the buying price of product has been changed

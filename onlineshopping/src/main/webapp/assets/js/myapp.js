@@ -7,6 +7,18 @@ $(function() {
 		}, 500);			
 	});	
 	
+	// for handling CSRF token
+	var token = $('meta[name="_csrf"]').attr('content');
+	var header = $('meta[name="_csrf_header"]').attr('content');
+	
+	if((token!=undefined && header !=undefined) && (token.length > 0 && header.length > 0)) {		
+		// set the token header for the ajax request
+		$(document).ajaxSend(function(e, xhr, options) {			
+			xhr.setRequestHeader(header,token);			
+		});				
+	}
+	
+	
 	
 	// solving the active menu problem
 	switch (menu) {
@@ -365,7 +377,7 @@ $(function() {
 	
 	
 	/*------*/
-	
+	/* for fading out the alert message after 3 seconds */
 	$alert = $('.alert');
 	if($alert.length) {
 		setTimeout(function() {
@@ -374,27 +386,8 @@ $(function() {
 		);		
 	}
 		
-	
-/*	$(document).on('click', '[data-toggle="confirm"]', function (e) {
-	    e.preventDefault();
-	    var lHref = $(this).attr('href');
-	    var lText = this.attributes.getNamedItem("data-title") ? this.attributes.getNamedItem("data-title").value : "Are you sure?"; // If data-title is not set use default text
-	    bootbox.confirm({
-	    	size: 'medium',
-	    	title: 'Delete Product',
-	    	message: lText,
-	    	callback: function (confirmed) {
-		        if (confirmed) {
-		            window.location.replace(lHref); // similar behavior as an HTTP redirect (DOESN'T increment browser history)
-		            //window.location.href = lHref; // similar behavior as clicking on a link (Increments browser history)
-		        }
-	    	}
-	    });
-	});	
-	*/
-
-	/* handle refresh cart*/
-	
+	/*------*/
+	/* handle refresh cart*/	
 	$('button[name="refreshCart"]').click(function(){
 		var cartLineId = $(this).attr('value');
 		var countField = $('#count_' + cartLineId);

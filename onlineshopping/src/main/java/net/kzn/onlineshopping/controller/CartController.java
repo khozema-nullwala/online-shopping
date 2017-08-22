@@ -32,6 +32,9 @@ public class CartController {
 					mv.addObject("message", "Product has been successfully added inside cart!");					
 					cartService.validateCartLine();
 					break;
+				case "unavailable":
+					mv.addObject("message", "Product quantity is not available!");					
+					break;
 				case "updated":
 					mv.addObject("message", "Cart has been updated successfully!");					
 					cartService.validateCartLine();
