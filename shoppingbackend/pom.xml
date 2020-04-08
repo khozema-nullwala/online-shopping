@@ -14,7 +14,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<hibernate.version>5.2.7.Final</hibernate.version>
-		<jackson.version>2.8.7</jackson.version>
+		<jackson.version>2.10.3</jackson.version>
+		<mysql.version>8.0.19</mysql.version>
 	</properties>
 
 	<dependencies>
@@ -61,7 +62,16 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>1.4.196</version>
+			<version>1.4.200</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- MySQL Driver -->
+		<dependency>
+		    <groupId>mysql</groupId>
+		    <artifactId>mysql-connector-java</artifactId>
+		    <version>${mysql.version}</version>
+		    <scope>runtime</scope>
 		</dependency>
 		
 		<!-- Hibernate Dependency -->		

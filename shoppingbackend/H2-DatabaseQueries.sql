@@ -1,3 +1,5 @@
+DROP ALL OBJECTS;
+
 CREATE TABLE category (
 	id IDENTITY,
 	name VARCHAR(50),
@@ -20,7 +22,6 @@ CREATE TABLE user_detail (
 	CONSTRAINT pk_user_id PRIMARY KEY(id)
 );
 
-
 CREATE TABLE product (
 	id IDENTITY,
 	code VARCHAR(20),
@@ -36,7 +37,7 @@ CREATE TABLE product (
 	views INT DEFAULT 0,
 	CONSTRAINT pk_product_id PRIMARY KEY (id),
  	CONSTRAINT fk_product_category_id FOREIGN KEY (category_id) REFERENCES category (id),
-	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail(id),	
+	CONSTRAINT fk_product_supplier_id FOREIGN KEY (supplier_id) REFERENCES user_detail(id)	
 );	
 
 -- the address table to store the user billing and shipping addresses
@@ -61,11 +62,11 @@ CREATE TABLE cart (
 	user_id int,
 	grand_total DECIMAL(10,2),
 	cart_lines int,
-	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id ) REFERENCES user_detail (id),
+	CONSTRAINT fk_cart_user_id FOREIGN KEY (user_id) REFERENCES user_detail (id),
 	CONSTRAINT pk_cart_id PRIMARY KEY (id)
 );
--- the cart line table to store the cart details
 
+-- the cart line table to store the cart details
 CREATE TABLE cart_line (
 	id IDENTITY,
 	cart_id int,
@@ -74,13 +75,11 @@ CREATE TABLE cart_line (
 	product_count int,
 	buying_price DECIMAL(10,2),
 	is_available boolean,
-	CONSTRAINT fk_cartline_product_id FOREIGN KEY (product_id ) REFERENCES product (id),
+	CONSTRAINT fk_cartline_product_id FOREIGN KEY (product_id) REFERENCES product (id),
 	CONSTRAINT pk_cartline_id PRIMARY KEY (id)
 );
 
-
 -- the order detail table to store the order
-
 CREATE TABLE order_detail (
 	id IDENTITY,
 	user_id int,
@@ -96,7 +95,6 @@ CREATE TABLE order_detail (
 );
 
 -- the order item table to store order items
-
 CREATE TABLE order_item (
 	id IDENTITY,
 	order_id int,
