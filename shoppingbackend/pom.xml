@@ -15,7 +15,7 @@
 		<spring.version>4.3.6.RELEASE</spring.version>
 		<hibernate.version>5.2.7.Final</hibernate.version>
 		<jackson.version>2.10.3</jackson.version>
-		<mysql.version>8.0.19</mysql.version>
+		<mysql.version>8.0.28</mysql.version>
 	</properties>
 
 	<dependencies>
